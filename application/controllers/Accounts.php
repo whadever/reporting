@@ -111,7 +111,7 @@ class Accounts extends CI_Controller
 	{
 		if($id == '')
 		{
-			redirect('accounts/login')
+			redirect('accounts/login');
 		}
 	}
 }
