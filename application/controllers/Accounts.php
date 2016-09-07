@@ -13,6 +13,7 @@ class Accounts extends CI_Controller {
 
 	public function login()
 	{
+		$this->template->load('default', 'accounts/login', $data);
 		
 	}
 }
