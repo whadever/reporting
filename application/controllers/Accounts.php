@@ -39,14 +39,11 @@ class Accounts extends CI_Controller
 
 						);
 
-				$this->session->set_userdata($session);
+					$this->session->set_userdata($session);
 
-				echo 'pisang lu';
-				echo '<pre>';
-				print_r($this->session->userdata());
-				echo '</pre>';
+					redirect('main');
 
-				exit;
+				
 				}
 				//Set The Session with someone one logged
 				else
@@ -66,12 +63,7 @@ class Accounts extends CI_Controller
 
 					$this->session->set_userdata($session);
 
-					echo 'apel lu';
-					echo '<pre>';
-					print_r($this->session->userdata());
-					echo '</pre>';
 
-					exit;
 				}
 
 			}
@@ -88,11 +80,11 @@ class Accounts extends CI_Controller
 		if($this->session->userdata('user_logged') == NULL)
 		{
 			//If there is no one logged in
-			$this->template->load('default', 'accounts/login_non_logged', $data);
+			$this->template->load('default_login', 'accounts/login_non_logged', $data);
 		}else
 		{
 			//If there is a person logged in
-			$this->template->load('default', 'accounts/login_others_logged', $data);
+			$this->template->load('default_login', 'accounts/login_others_logged', $data);
 		}
 	}
 

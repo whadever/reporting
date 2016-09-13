@@ -1,0 +1,37 @@
+/* LRM Group */
+
+@media only screen and (max-device-width: 991px)
+{
+	/* remove logo border-right at login page */
+	#logo-login{
+		border : none !important;
+	}
+	#logo{
+		width: 300px;
+		height: 300px;
+	}
+	/*wrap*/
+	.wrap{
+	  overflow-x: scroll !important;
+	  width: inherit !important;
+	} 
+
+} 
+
+@media only screen and (max-device-width: 440px)
+{
+	
+	#logo-login{
+		border : none !important;
+	}
+	#logo{
+		width: 200px;
+		height: 200px;
+	}
+
+    /*wrap*/
+	.wrap{
+	  overflow-x: scroll !important;
+	  width: inherit !important;
+	} 
+}
