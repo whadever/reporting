@@ -62,7 +62,7 @@ class Accounts extends CI_Controller
 						);
 
 					$this->session->set_userdata($session);
-
+					redirect('main');
 
 				}
 
@@ -90,22 +90,48 @@ class Accounts extends CI_Controller
 
 	public function logout ()
 	{
-		$active_user = $this->session->userdata('is_active');
-		$this->session->unset_userdata('id_' . $active_user);
-		$this->session->set_userdata(array('is_active' => NULL));
+		if($this->session->userdata('user_logged') > 1){
+			$active_user = $this->session->userdata('is_active');
+			$user_logged = $this->session->userdata('user_logged') - 1;
+			$this->session->unset_userdata('id_' . $active_user);
+			$this->session->set_userdata(array('is_active' => NULL,'user_logged' => $user_logged));
 
-		echo '<pre>';
-		print_r($this->session->userdata());
-		echo '</pre>';
+			redirect('accounts/login');
+		}else{
+			$this->session->sess_destroy();
+			redirect('accounts/login');
+		}
+		
+
+		
+	}
+
+	public function select_account($id = ''){
+		if($id != ''){
+			$this->session->set_userdata('is_active',$id);
+			redirect('main');
+		}else{
+			$data['title'] = 'User Selection';
+
+			$this->template->load('default','accounts/select_account', $data);
+		}
 	}
 
 	public function switch_account ($id = '')
 	{
 		if($id == '')
 		{
-			redirect('accounts/login');
+			redirect('main');
+		}else{
+
+			$this->session->set_userdata('is_active',$id);
+			redirect('main');
+			
 		}
+
 	}
+
+
 }
 
 ?>

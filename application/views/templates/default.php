@@ -190,6 +190,18 @@
 
   </head>
   <body>
+  <?php 
+    $active_user = $this->crud_model->get_by_condition('users',array('id' => $this->session->userdata('is_active')))->row();
+    if($active_user->photo == ''){
+      $active_photo = base_url()."uploads/photos/no-photo.png";
+    }else{
+      $active_photo = base_url().$active_user->photo; 
+    }
+    
+   ?>
+
+
+
     <div class="container-fluid">
       <div id="mySidenav" class="sidenav" >
        <a id="menu-button" onclick="openNav()" style="cursor:pointer"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
@@ -208,15 +220,18 @@
       </div>
 
        <div id="main" >
-          
+           
+     
              
            <div class="row" style="padding: 30px 20px 20px 20px; text-align:right">
              <div class="col-xs-12">
-                <pre>
-                  <?php print_r($this->session->userdata()) ?>
-                </pre>
+
+
+               
                 <a class="show-pop pull-right" data-animation="pop"  data-placement="vertical"
-                    data-content="<?php if($this->session->userdata('user_logged') > 1){
+                    data-content="<?php if($this->session->userdata('user_logged')){
+
+                        echo"<a href='".base_url('accounts/switch_account/'.$active_user->id)."' style='display:block'><img src='".$active_photo."' width='80'><div style='display:inline-block'><p>".$active_user->name."</p><p>".$active_user->email."</p> </div></a>";
                         $i = 0;
                         foreach ($this->session->userdata as $user)
                         { 
@@ -230,28 +245,48 @@
                             $i++;
                           }
 
+                          $profile = $this->crud_model->get_by_condition('users',array('id' => $user['user_id']))->row();
                           //After 3 keys are bypassed user info are passed!
                           
-                            
-                              echo 'Id User<br>';
-                              echo $user['user_id'].'<br>'; 
-                           
-                              echo 'Username';
-                              echo $user['username'].'<br>';
+                          
+                          if($profile->photo == ''){
+                            $photo = base_url()."uploads/photos/no-photo.png";
+                          }else{
+                            $photo = base_url().$profile->photo; 
+                          }
+
+                          $user_id = $user['user_id'];
+
+                          if($user_id != $this->session->userdata('is_active')){
+                            echo"<a href='".base_url('accounts/switch_account/'.$profile->id)."' style='display:block'><img src='".$photo."' width='50'><div style='display:inline-block'><p>".$profile->name."</p><p>".$profile->email."</p> </div></a>";
+                          }
+                                                   
+                       
+
+
                             
 
                         
                         }
 
                       } ?>
-                      <a href='<?php echo base_url('accounts/login') ?>'>Add Account</a>"
+                      <a href='<?php echo base_url('accounts/login') ?>'>Add Account</a>
+                      <a href='<?php echo base_url('accounts/logout') ?>'>Sign Out</a>"
 
-                    style="cursor:pointer;height: 50px; width: 50px; border-radius: 10px; background: url('<?php echo base_url() ?>assets/123.jpg')"></a>
-                <p class="pull-right" style="margin-right: 10px; font-size: 18px">Welcome to Reporting System,<br><?php echo 'John' ?></p>
+                    style="cursor:pointer;height: 50px; width: 50px; border-radius: 10px;background-size: cover;background-position: center; background-image: url('<?php
+                      if($active_user->photo == ''){
+                        echo base_url()."uploads/photos/no-photo.png";
+                      }else{
+                        echo base_url().$active_user->photo; 
+                      }
+                       
+
+                     ?>')"></a>
+                <p class="pull-right" style="margin-right: 10px; font-size: 18px">Welcome to Reporting System,<br><?php echo $active_user->name ?></p>
              </div>
            </div>
 
-                  
+                  <?php print_r($this->session->userdata) ?>
 
                   
                
