@@ -166,6 +166,7 @@
 		padding: 10px;
 		border: 1px solid #BBB;
 	}
+
 </style>
 
 <div class="row" style="background-color: #f4f4f4; padding: 15px 10px">
@@ -198,6 +199,7 @@
 </div>
 
 
+
 <!-- <script>
 	var dt = new Date();
 	var month = dt.getMonth()+1, year = dt.getFullYear();
@@ -220,3 +222,4 @@
   $('[data-toggle="tooltip"]').tooltip()
 })
 </script>
+
