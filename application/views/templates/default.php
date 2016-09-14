@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>css/custom.css">
     <link rel="stylesheet" href="<?php echo base_url();?>css/form-builder.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="<?php echo base_url();?>css/jquerytour.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo base_url();?>css/jquery.webui-popover.min.css">
+    
+    
     
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -20,6 +23,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>js/form-builder.js" ></script>
     <script type="text/javascript" src="<?php echo base_url();?>js/tour.js"></script>
     <script src="<?php echo base_url();?>js/jquery-ui.min.js"></script>
+    <script src="<?php echo base_url();?>js/jquery.webui-popover.min.js"></script> 
 
     <!-- CSS and Javascript -->
     <style>
@@ -208,19 +212,83 @@
              
            <div class="row" style="padding: 30px 20px 20px 20px; text-align:right">
              <div class="col-xs-12">
-                
-                <a class="pull-right" style="height: 50px; width: 50px; border-radius: 10px; background: url('<?php echo base_url() ?>assets/123.jpg')"></a>
+                <pre>
+                  <?php print_r($this->session->userdata()) ?>
+                </pre>
+                <a class="show-pop pull-right" data-animation="pop"  data-placement="vertical"
+                    data-content="<?php if($this->session->userdata('user_logged') > 1){
+                        $i = 0;
+                        foreach ($this->session->userdata as $user)
+                        { 
+                          //Skip the first 3 keys
+                          if($i < 3)
+                          {
+                            $i++;
+                            continue;
+                          }else
+                          {
+                            $i++;
+                          }
+
+                          //After 3 keys are bypassed user info are passed!
+                          
+                            
+                              echo 'Id User<br>';
+                              echo $user['user_id'].'<br>'; 
+                           
+                              echo 'Username';
+                              echo $user['username'].'<br>';
+                            
+
+                        
+                        }
+
+                      } ?>
+                      <a href='<?php echo base_url('accounts/login') ?>'>Add Account</a>"
+
+                    style="cursor:pointer;height: 50px; width: 50px; border-radius: 10px; background: url('<?php echo base_url() ?>assets/123.jpg')"></a>
                 <p class="pull-right" style="margin-right: 10px; font-size: 18px">Welcome to Reporting System,<br><?php echo 'John' ?></p>
              </div>
            </div>
 
+                  
+
+                  
+               
           
               <?php echo $body ?>
            
           
       </div>
     </div>
-    
+   <script>
+      (function(){
+
+
+        var settings = {
+            trigger:'click',         
+            multi:true,           
+            closeable:false,
+            style:'',
+            delay:300,
+            padding:true,
+            backdrop:false
+        };
+
+        function initPopover(){         
+          $('a.show-pop').webuiPopover('destroy').webuiPopover(settings);       
+          
+          var tableContent = $('#tableContent').html(),
+            tableSettings = {content:tableContent,
+                      width:500
+                    };
+         
+        }
+        initPopover();    
+          
+      })();
+      
+    </script>
      <script>
     /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
       function openNav() {
