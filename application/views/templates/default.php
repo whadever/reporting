@@ -124,7 +124,7 @@
       line-height: 11px;
       display: none;
     }
-    .fa{
+    #mySidenav .fa{
       font-size: 19px;
     }
     
@@ -155,7 +155,8 @@
              
            <div class="row" style="padding: 30px 20px 20px 20px; text-align:right">
              <div class="col-xs-12">
-                <div class="pull-right" style="height: 50px; width: 50px; border-radius: 10px; background: url('<?php echo base_url() ?>assets/123.jpg')"></div>
+                
+                <a class="pull-right" style="height: 50px; width: 50px; border-radius: 10px; background: url('<?php echo base_url() ?>assets/123.jpg')"></a>
                 <p class="pull-right" style="margin-right: 10px; font-size: 18px">Welcome to Reporting System,<br><?php echo 'John' ?></p>
              </div>
            </div>
@@ -172,7 +173,8 @@
       function openNav() {
           document.getElementById("mySidenav").style.width = "200px";
           document.getElementById("main").style.marginLeft = "200px";
-          //document.getElementByClassName("nth-of-type(odd)").style.backgroundColor = "rgba(0,0,0,0.4)";
+          
+          
           $('.menu-text').show();
           $('.company_logo').show();
           $('#menu-button').hide();
@@ -186,6 +188,7 @@
       function closeNav() {
           document.getElementById("mySidenav").style.width = "40px";
           document.getElementById("main").style.marginLeft = "30px";
+
           $('.menu-text').hide();
           $('.company_logo').hide();
           $('#menu-button').show();

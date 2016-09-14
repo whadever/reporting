@@ -62,10 +62,10 @@
 
 	        $this->load->library('calendar',$this->conf);
 
-	        $red = 'red';
+	        $red = 'purple';
 
-	        $data = array('<a class="content" data-toggle="tooltip" data-placement="top" title="Submitted on 2016-09-20" style="background-color:'.$red.'" href="">test1</a>',
-	        	'<a class="content" data-toggle="tooltip" data-placement="top" title="Submitted on 2016-09-13" style="background-color:blue" href="">test2</a>');
+	        $data = array('<a class="content" data-toggle="tooltip" data-placement="top" title="Submitted on 20-09-2013" style="background-color:'.$red.'" href="">test1</a>',
+	        	'<a class="content" data-toggle="tooltip" data-placement="top" title="Submitted on 13-09-2013" style="background-color:black" href="">test2</a>');
 
 	        $content = implode(' ',$data);
 
