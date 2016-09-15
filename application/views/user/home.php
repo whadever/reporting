@@ -140,7 +140,7 @@
 				<div class="col-xs-12">
 					<p class="page_subtitle">YOUR REPORTS</p>
 					<input type="text" class="search pull-right form-control" name="name_search" placeholder="Search report by name" style="margin-right: 0">
-					<input type="text" class="search pull-right form-control" name="date_search" placeholder="Search report by date">
+					<input type="text" class="search pull-right form-control" id="datepicker1" name="date_search" placeholder="Search report by date">
 				</div>
 			</div>
 		</div>
@@ -163,11 +163,38 @@
 </div>
 
 
+
+
+
 <script>
 	$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+	  $('[data-toggle="tooltip"]').tooltip()
+	})
 </script>
+<script type="text/javascript">
+    $(function () {
+        $('#datepicker1').datepicker({
+        	format: "yyyy-mm",
+		    viewMode: "months", 
+		    minViewMode: "months"
+
+        });
+    });
+</script>
+
+<script>
+
+	$(document).ready(function(){
+	    $(".datepicker").blur(function(){
+	    	alert('1');
+
+	        
+	    });
+
+	});
+
+</script>
+
 <!-- get timezone -->
 <!-- 
 <script type="text/javascript" src="<?php echo base_url().'js/timezone.js' ?>">

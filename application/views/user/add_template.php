@@ -50,7 +50,7 @@
         <div class="container">
             <div class="row" >
                 <div class="col-xs-12">
-                    <form action="<?php echo site_url('templates/create/'); ?>" method="post">
+                    <form action="<?php echo base_url('templates/create/'); ?>" method="post">
 
                     <div class="content-inner row tour tour_4" style="margin-bottom: 20px">
                         <div class="col-md-2">
