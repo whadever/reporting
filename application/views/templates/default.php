@@ -284,11 +284,7 @@
                      ?>')"></a>
                 <p class="pull-right" style="margin-right: 10px; font-size: 18px">Welcome to Reporting System,<br><?php echo $active_user->name ?></p>
              </div>
-           </div>
-
-                  <?php print_r($this->session->userdata) ?>
-
-                  
+           </div>                  
                
           
               <?php echo $body ?>
