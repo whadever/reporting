@@ -27,6 +27,10 @@
          font-size: 10px !important;
          margin-left: 3px !important;
       }
+      .actionicons{
+      	font-size: 20px;
+      	margin-right: 10px;
+      }
      
 </style>
 
@@ -35,7 +39,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
+
 					<p class="page_subtitle">REPORT TEMPLATES</p>
+
 					<input type="text" class="search pull-right form-control" name="name_search" placeholder="Search report by name" style="margin-right: 0">
 					<input type="text" class="search pull-right form-control" name="date_search" placeholder="Search report by date">
 				</div>
@@ -49,8 +55,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12" style="padding: 0 5%">
-					<button class="btn btn-danger pull-right" style="padding: 5px;font-size: 12px; margin-left: 5px">Deactivate Report Temporary</button>
-					<a class="pull-right" style="font-size: 16px" href="<?php echo base_url('templates/add_template') ?>">+ Add Template</a>
+					<button class="btn btn-danger pull-right" style="padding: 5px;font-size: 14px; margin-left: 10px;margin-bottom:10px;">Deactivate Report Temporary</button>
+					<a class="pull-right" style="font-size: 16px;padding-top:5px;" href="<?php echo base_url('templates/add_template') ?>">+ Add Template</a>
 					<table class="table">
 						<thead>
 							<tr style="background-color: #F4F4F4;border: 2px solid #F4F4F4; font-weight:bold">
@@ -66,7 +72,7 @@
 								<td width="35%"><?php echo $form->name ?></td>
 								<td width="20%"><?php echo $form->manager_name ?></td>
 								<td width="25%"><?php echo implode('<br>',$form_staffs[$form->id]) ?></td>
-								<td width="20%">edit copy delete</td>
+								<td width="20%"><i class="fa fa-pencil-square-o actionicons" aria-hidden="true"></i><i class="fa fa-files-o actionicons" aria-hidden="true"></i><i class="fa fa-trash actionicons" aria-hidden="true"></i></td>
 							</tr>
 							<?php endforeach; ?>
 						</tbody>

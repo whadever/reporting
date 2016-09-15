@@ -184,14 +184,6 @@
 
 <script>
 
-	$(document).ready(function(){
-	    $(".datepicker").blur(function(){
-	    	alert('1');
-
-	        
-	    });
-
-	});
 
 </script>
 

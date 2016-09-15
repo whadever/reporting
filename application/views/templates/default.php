@@ -11,7 +11,11 @@
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/custom.css">
+
     <link rel="stylesheet" href="<?php echo base_url() ?>css/datepicker.css">
+
+    <link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap-tour.css">
+
 
     <link rel="stylesheet" href="<?php echo base_url();?>css/jquery.webui-popover.min.css">
     
@@ -20,6 +24,8 @@
     
     <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js"></script>
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url() ?>js/bootstrap-tour.js"></script>
+    
     
     <script type="text/javascript" src="<?php echo base_url() ?>js/moment.js"></script>
 
@@ -162,17 +168,18 @@
 
     <div class="container-fluid">
       <div id="mySidenav" class="sidenav" >
-       <a id="menu-button" onclick="openNav()" style="cursor:pointer"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+       <a id="menu-button" onclick="openNav()" style="cursor:pointer"><i id="nav-button" class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
         <div class="company_logo" style="display:none;margin-bottom: 10px; padding-left: 15px; padding-bottom:20px; border-bottom:7px solid #000">
           <img src="<?php echo base_url()?>assets/william_platform_logo.png" width="100px" style="margin-left:15%;">
         </div>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="border-bottom: none;font-size:25px!important; display:none">&times;</a>
         <a href="<?php echo base_url('main') ?>"><i class="fa fa-home" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Home</span></a>
-        <a href="<?php echo base_url('') ?>"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
-        <a href="<?php echo base_url('templates') ?>"><i class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
-        <a href="<?php echo base_url('user/settings') ?>"><i class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
+        <a href="<?php echo base_url('') ?>" ><i id="submit-button" class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
+        <a href="<?php echo base_url('templates') ?>" ><i id="template-button" class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
+        <a href="<?php echo base_url('user/settings/'.$this->session->userdata('is_active')) ?>" ><i id="setting-button" class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
+
         <a href="<?php echo base_url('') ?>"><i class="fa fa-question" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">FAQ and How</span></a>
-        <a href="<?php echo base_url('') ?>"><i class="fa fa-headphones" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Customer Service</span></a>
+        <a href="<?php echo base_url('') ?>"><i class="fa fa-headphones" id="service-button" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Customer Service</span></a>
         <div class="bottom-align-text-2 text-center">Williams Business Solutions Reporting System V1.0</div>
         <div class="bottom-align-text text-center">For help and feedback contact office@williamsbusiness.co.nz</div>
       </div>
@@ -184,8 +191,8 @@
            <div class="row" style="padding: 30px 20px 20px 20px; text-align:right">
              <div class="col-xs-12">
 
-
-               
+                <button type="button" class="btn btn-primary pull-left" id="webtour" style="margin-left:10px;">Start Web Tour</button>
+                
                 <a class="show-pop pull-right" data-animation="pop"  data-placement="vertical"
                     data-content="<?php if($this->session->userdata('user_logged')){
 
@@ -249,6 +256,53 @@
           
       </div>
     </div>
+  <script>
+      //Tour Script
+        var tour = new Tour({
+        storage:false,
+        steps: [
+        {
+          element: "#nav-button",
+          title: "Getting Started",
+          content: "Click this icon to access all the available menu"
+        },
+        {
+          element: "#submit-button",
+          title: "Submitting Report",
+          content: "Click this menu to submit the reports which are assigned to you"
+        },
+        {
+          element: "#template-button",
+          title: "Seeing Report Template",
+          content: "Here you can see, edit, and delete the already existing report templates. You can also create new report template here."
+        }
+        ,
+        {
+          element: "#setting-button",
+          title: "Profile Setting",
+          content: "You can change the detail of your personal profile through this option."
+        },
+        {
+          element: "#service-button",
+          title: "Customer Service",
+          content: "If you have any inquiries or difficulties regarding our system, you can contact us through our customer service."
+        }
+
+      ]});
+
+      // Initialize the tour
+      tour.init();
+
+      
+      
+  </script>
+  <script>
+    $(document).ready(function(){
+        $('#webtour').click(function(){
+            tour.restart();
+        });
+    });
+  </script>
    <script>
       (function(){
 

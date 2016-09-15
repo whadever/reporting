@@ -1,6 +1,6 @@
 <?php 
 
-	class Templates extends MY_Controller{
+	class Templates extends MY_Controller {
 
 		function __construct(){
 			parent::__construct();
@@ -130,7 +130,7 @@
 			$this->db->where('id NOT IN ('.implode(',', $field_id_arr).')');
 			$this->db->delete('form_fields');
 
-			redirect(site_url('templates/staffs/'.$form_id));
+			redirect(site_url('templates/assign_staff/'.$form_id));
 		}
 
 		/*the page to assign staffs to a form*/
@@ -172,7 +172,11 @@
 			// $this->load->view('includes/footer',$data);
 
 		}
+
+		public function assign_staff($form_id=''){
+			$data['title'] = 'Assign Staff and Frequency';
+			$this->template->load('default','user/assign_staff',$data);
+		}
+
 	}
-
-
  ?>
