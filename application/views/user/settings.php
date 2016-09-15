@@ -32,9 +32,6 @@
 	</div>
 </div>
 
-<pre>
-	<?php print_r($users) ?>
-</pre>
 
 <div class="row" style="padding:15px 10px">
 	<div class="col-xs-12">
