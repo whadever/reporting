@@ -163,15 +163,15 @@
 
     <div class="container-fluid">
       <div id="mySidenav" class="sidenav" >
-       <a id="menu-button" onclick="openNav()" style="cursor:pointer"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+       <a id="menu-button" onclick="openNav()" style="cursor:pointer"><i id="nav-button" class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
         <div class="company_logo" style="display:none;margin-bottom: 10px; padding-left: 15px; padding-bottom:20px; border-bottom:7px solid #000">
           <img src="<?php echo base_url()?>assets/william_platform_logo.png" width="100px" style="margin-left:15%;">
         </div>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="border-bottom: none;font-size:25px!important; display:none">&times;</a>
         <a href="<?php echo base_url('main') ?>"><i class="fa fa-home" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Home</span></a>
-        <a href="<?php echo base_url('') ?>" id="submit-button"><i class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
-        <a href="<?php echo base_url('templates') ?>" id="template-button"><i class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
-        <a href="<?php echo base_url('user/settings'. $this->session->userdata('is_active'))) ?>" id="setting-button"><i class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
+        <a href="<?php echo base_url('') ?>" ><i id="submit-button" class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
+        <a href="<?php echo base_url('templates') ?>" ><i id="template-button" class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
+        <a href="<?php echo base_url('user/settings/'.$this->session->userdata('is_active')) ?>" ><i id="setting-button" class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
 
         <a href="<?php echo base_url('') ?>"><i class="fa fa-question" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">FAQ and How</span></a>
         <a href="<?php echo base_url('') ?>"><i class="fa fa-headphones" id="service-button" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Customer Service</span></a>
@@ -257,7 +257,7 @@
         storage:false,
         steps: [
         {
-          element: "#menu-button",
+          element: "#nav-button",
           title: "Getting Started",
           content: "Click this icon to access all the available menu"
         },
