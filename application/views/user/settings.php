@@ -53,30 +53,30 @@
 			
 			<div class="col-md-6">
 				<div class="form-group">	
-					<label for="">Name:</label>
+					<label for="">Name</label>
 					<input type="text" class="form-control" name="name" value="<?php echo $users->name ?>">
 				</div>
 				<div class="form-group">	
-					<label for="">Address:</label>
+					<label for="">Address</label>
 					<input type="text" class="form-control" name="address" value="<?php echo $users->address ?>">
 				</div>
 				<div class="form-group">	
-					<label for="">Phone No.:</label>
+					<label for="">Phone No.</label>
 					<input type="text" class="form-control" name="phone_number" value="<?php echo $users->phone_number ?>">
 				</div>
 				<div class="form-group">	
-					<label for="">Mobile No.:</label>
+					<label for="">Mobile No.</label>
 					<input type="text" class="form-control" name="mobile_number" value="<?php echo $users->mobile_number ?>">
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div class="form-group">	
-					<label for="">Username:</label>
+					<label for="">Username</label>
 					<input type="text" class="form-control" name="username" value="<?php echo $users->username ?>" disabled="disabled">
 				</div>
-				<div class="form-group">	
-					<label for="">Password:</label>
-					<a href="">Change Password</a>
+				<div id="changepassword">	
+					
+					<a onclick="change_password()" style="cursor:pointer;">Change Password</a>
 				</div>
 			</div>
 
@@ -100,3 +100,12 @@
 		</div>
 	</div>
 </div>
+<script>
+	function change_password(){
+		$('#changepassword').empty();
+		$('#changepassword').append('<div class="form-group"><label for="old_pass">Old Password</label> <input type="text" class="form-control" name="old_pass"></div><div class="form-group"><label for="new_pass">New Password</label> <input type="text" name="new_pass" class="form-control"></div><div class="form-group"><label for="re_pass">Re-Type Password</label> <input type="text" class="form-control" name="re_pass"></div>');
+	}
+	function check_password(){
+		var password = $("#old_pass").val();
+	}
+</script>
