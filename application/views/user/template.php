@@ -39,7 +39,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<p style="font-size: 16px; font-weight: 600; display: inline;">Report Templates</p>
+
+					<p class="page_subtitle">REPORT TEMPLATES</p>
+
 					<input type="text" class="search pull-right form-control" name="name_search" placeholder="Search report by name" style="margin-right: 0">
 					<input type="text" class="search pull-right form-control" name="date_search" placeholder="Search report by date">
 				</div>

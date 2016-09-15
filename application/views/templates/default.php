@@ -11,18 +11,18 @@
     <link href="<?php echo base_url() ?>css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo base_url() ?>css/custom.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>css/form-builder.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="<?php echo base_url();?>css/jquerytour.css" type="text/css" media="screen" />
+
+
     <link rel="stylesheet" href="<?php echo base_url();?>css/jquery.webui-popover.min.css">
     
     
     
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>js/jquery-1.12.4.min.js"></script>
     <script src="<?php echo base_url() ?>js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url();?>js/form-builder.js" ></script>
-    <script type="text/javascript" src="<?php echo base_url();?>js/tour.js"></script>
-    <script src="<?php echo base_url();?>js/jquery-ui.min.js"></script>
+    
+
+  
     <script src="<?php echo base_url();?>js/jquery.webui-popover.min.js"></script> 
 
     <!-- CSS and Javascript -->
@@ -142,51 +142,7 @@
 
   </style>
 
-  <script>
-    /*tour. task #4429*/
-    var config = [
-        {
-          "name"    : "tour_1",
-          "bgcolor" : "black",
-          "color"   : "white",
-          "position"  : "T",
-          "text"    : "See your own report and also your staff's report if you have Manager's permission.",
-          "time"    : 5000,
-          "buttons" : ["<span class='btn btn-xs btn-default nextstep'>next</span>", "<span class='btn btn-xs btn-default endtour'>end tour</span>"]
-        },
-        {
-          "name"    : "tour_2",
-          "bgcolor" : "black",
-          "color"   : "white",
-          "text"    : "Submit the report(s) you are assigned to. Your report will be sent to the people in charge.",
-          "position"  : "T",
-          "time"    : 5000,
-          "buttons" : ["<span class='btn btn-xs btn-default prevstep'>prev</span>","<span class='btn btn-xs btn-default nextstep'>next</span>","<span class='btn btn-xs btn-default endtour'>end tour</span>", "<span class='btn btn-xs btn-default restarttour'>restart tour</span>"]
-        }
-
-      ];
-
-      // 
-      //   config.push({
-      //     "name"    : "tour_3",
-      //     "bgcolor" : "black",
-      //     "color"   : "white",
-      //     "text"    : "This tab is only visible to people that has Admin's permission. From here you can add/edit report, change the date line, assign to users, etc. You also able to clone the report if you have a similar ones.",
-      //     "position"  : "T",
-      //     "time"    : 5000,
-      //     "buttons" : ["<span class='btn btn-xs btn-default prevstep'>prev</span>","<span class='btn btn-xs btn-default nextstep'>next</span>","<span class='btn btn-xs btn-default endtour'>end tour</span>", "<span class='btn btn-xs btn-default restarttour'>restart tour</span>"]
-      //   });
-   
-    //define if steps should change automatically
-    var autoplay  = false,
-    //timeout for the step
-      showtime,
-    //current step of the tour
-      step    = 0,
-    //total number of steps
-      total_steps = config.length;
-  </script>
-
+ 
 
   </head>
   <body>
@@ -285,8 +241,7 @@
                 <p class="pull-right" style="margin-right: 10px; font-size: 18px">Welcome to Reporting System,<br><?php echo $active_user->name ?></p>
              </div>
            </div>                  
-               
-          
+            
               <?php echo $body ?>
            
           

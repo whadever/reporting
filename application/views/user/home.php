@@ -50,15 +50,7 @@
 		position: absolute;
 		top: 0;
 	}
-	.status-complete{
-		color: green;
-	}
-	.status-overdue{
-		color: red;
-	}
-	.status-ontheway{
-		color: #fab800;
-	}
+	
 	#cal-body{
 		
 		margin-top: 20px;
@@ -121,36 +113,8 @@
 	}
 	#my-tasks.active{
 		color:white !important;
-	}
-	div.jquery-gdakram-tooltip div.content {
-		background-color: white;
-		border: 5px solid #671329;
-		border-radius: 1em;
-		float: left;
-		min-height: 200px;
-		padding: 10px;
-		width: 280px;
-		color: black;
-	}
-	div.jquery-gdakram-tooltip div.content h1 {
-		border-bottom: 1px solid #c4c4c4;
-		font-size: 14px;
-		margin-top: 8px;
-		padding-bottom: 5px;
-	}
-	#overlay {
-		background-color: #000;
-		background-image: url("<?php echo base_url(); ?>images/ajax-loading.gif");
-		background-position: 50% center;
-		background-repeat: no-repeat;
-		height: 100%;
-		left: 0;
-		opacity: 0.5;
-		position: fixed;
-		top: 0;
-		width: 100%;
-		z-index: 10000;
-	}
+	}	
+	
 	.ui-datepicker-calendar {
 		display: none;
 	}
@@ -174,7 +138,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<p style="font-size: 16px; font-weight: 600; margin: 0; display: inline">Your Reports</p>
+					<p class="page_subtitle">YOUR REPORTS</p>
 					<input type="text" class="search pull-right form-control" name="name_search" placeholder="Search report by name" style="margin-right: 0">
 					<input type="text" class="search pull-right form-control" name="date_search" placeholder="Search report by date">
 				</div>
@@ -199,27 +163,19 @@
 </div>
 
 
-
-<!-- <script>
-	var dt = new Date();
-	var month = dt.getMonth()+1, year = dt.getFullYear();
-	var base_url = '<?php echo base_url(); ?>';
-
-	$(document).ready(function(){
-
-		load_calendar();
-
-    });
-
-    function load_calendar(){
-		$("#cal-body").load(base_url + 'main/get_calendar/'+month+"/"+year);
-	}
-
-</script> -->
-
 <script>
 	$(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 </script>
-
+<!-- get timezone -->
+<!-- 
+<script type="text/javascript" src="<?php echo base_url().'js/timezone.js' ?>">
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var tz = jstz.determine();
+    var timezone = tz.name();
+    alert(timezone);
+  });
+</script> -->

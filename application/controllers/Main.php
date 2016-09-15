@@ -7,7 +7,6 @@ class Main extends MY_Controller {
 
         parent::__construct();
 
-        date_default_timezone_set('NZ');
 
         
     }
