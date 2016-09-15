@@ -21,6 +21,7 @@ class User extends MY_Controller {
 	}
 
 	public function save_settings($id=''){
+		$data['users'] = $this->crud_model->get_by_condition('users',array('id' => $id))->row();
 		if($this->input->post('save')){
 			
 			$config['allowed_types']        = 'jpg|png|jpeg';
@@ -47,7 +48,7 @@ class User extends MY_Controller {
                 //Get the link for the database
                 $photo = $config ['upload_path'] . '/' . $config ['file_name'];
             }else{
-           		$photo = $data['user']->photo;
+           		$photo = $data['users']->photo;
             }
 
 			$data = array(
