@@ -1,2 +1,10 @@
 /* Import Media Query */
 @import url('media.css');
+
+.page_subtitle{
+	font-size: 16px; 
+	font-weight: 600; 
+	margin: 0;
+	display: inline; 
+	line-height: 34px;
+}

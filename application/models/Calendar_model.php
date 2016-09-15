@@ -35,12 +35,12 @@
 		        {cal_cell_start_other}<td class="other-month">{/cal_cell_start_other}
 
 		        {cal_cell_content}
-		        	<div>{day}</div>
+		        	<div class="day-number">{day}</div>
 		        	<div>{content}</div>
 		        {/cal_cell_content}
 		        {cal_cell_content_today}<div class="highlight"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
 
-		        {cal_cell_no_content}{day}{/cal_cell_no_content}
+		        {cal_cell_no_content}<div class="day-number">{day}</div>{/cal_cell_no_content}
 		        {cal_cell_no_content_today}<div class="highlight">{day}</div>{/cal_cell_no_content_today}
 
 		        {cal_cell_blank}&nbsp;{/cal_cell_blank}
