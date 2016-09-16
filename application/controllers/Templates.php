@@ -3,11 +3,13 @@
 	class Templates extends MY_Controller {
 
 		private $company_id;
+		private $user_id;
 
 		function __construct(){
 			parent::__construct();
 			$this->load->model('form_model');
 			$this->company_id = $this->session->userdata('company_id');
+			$this->user_id = $this->session->userdata('is_active');
 		}
 
 		public function index(){
@@ -138,9 +140,39 @@
 	
 		/*assign staffs to a form*/
 		public function staff_add(){
-			echo "<pre>";
-			print_r($this->input->post());
-			echo "</pre>";
+			if($this->input->post('save')){
+				foreach($this->input->post('staffs') as $staff_id){
+					
+					$data_form_user = array(
+							'form_id' => $this->input->post('form_id'),
+							'user_id' => $staff_id,
+							'frequency' => $this->input->post('report_frequency'),
+							'deadline' => $this->input->post('deadline'),
+						);
+
+					$data_form_submit = array(
+							'form_id' => $this->input->post('form_id'),
+							'user_id' => $staff_id,
+							'manager_id' => $this->input->post('manager_id'),
+							'deadline' => date('Y-m-d').' '.$this->input->post('deadline'),
+
+						);
+
+					$this->crud_model->insert_data('form_users',$data_form_user);
+					$this->crud_model->insert_data('form_submits',$data_form_submit);
+				}
+
+				if($this->input->post('managers')){
+					$managers_to_notify = implode(', ', $this->input->post('managers'));
+
+					$this->crud_model->update_data('forms',array('managers_to_notify' => $managers_to_notify),
+						array('id' => $this->input->post('form_id'), 'company_id' => $this->company_id));
+
+				}
+
+
+			}
+			redirect('templates');
 		}
 		
 		public function assign_staff($form_id=''){

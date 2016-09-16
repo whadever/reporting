@@ -97,7 +97,8 @@
 				<div class="col-md-4">
 					<div class="row">
 						<div class="col-md-2"></div>	
-						<div class="col-md-8">	
+						<div class="col-md-8">
+							<input type="hidden" name="manager_id" value="<?php echo $form->manager_id ?>">	
 							<input type="hidden" name="form_id" value="<?php echo $form->id ?>">
 							<input type="submit" name="save" value="SAVE" class="btn btn-primary form-control" style="border-radius:10px;">
 						</div>
