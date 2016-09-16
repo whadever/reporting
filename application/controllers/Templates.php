@@ -4,12 +4,19 @@
 
 		private $company_id;
 		private $user_id;
+		private $user_role;
 
 		function __construct(){
 			parent::__construct();
 			$this->load->model('form_model');
 			$this->company_id = $this->session->userdata('company_id');
 			$this->user_id = $this->session->userdata('is_active');
+			$this->user_role = $this->crud_model->get_by_condition('users',array('id' => $this->user_id))->row('role');
+
+			if($this->user_role == 'staff'){
+				redirect('main');
+			}
+			
 		}
 
 		public function index(){
@@ -36,15 +43,15 @@
 		}
 
 		public function add_template(){
+	
+			
 			$data['title'] = 'New Template';
 			$this->template->load('default', 'user/add_template',$data);
 		}
 
 		/*creating the form*/
 		public function create($id = null){
-
-			//if($this->user_app_role != 'manager') return;
-			// if($this->user_app_role != 'admin') return; //task #4497
+			
 
 			$messages = array();
 
@@ -72,8 +79,8 @@
 
 				$data = array(
 					'name' => $this->input->post('name') ,
-					'manager_id' => 1,
-					'company_id' => 1,
+					'manager_id' => $this->user_id,
+					'company_id' => $this->company_id,
 					'created'=>date("Y-m-d H:i:s")
 				);
 
