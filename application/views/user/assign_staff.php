@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap-select.css">
+<script src="<?php echo base_url() ?>js/bootstrap-select.js"></script>
+
 <style>
 	#fields{
 		margin-top:20px;
@@ -33,7 +36,21 @@
 							<label for="">REPORT NAME</label>
 						</div>
 						<div class="col-md-9">
-							<input type="text" name="report_name" class="form-control">
+							<input disabled type="text" name="report_name" value="<?php echo $form->name ?>" class="form-control">
+						</div>
+					</div>
+					<div class="row" id="fields">
+						<div class="col-md-3">
+							<label for="">ASSIGN STAFF(s)</label>
+						</div>
+
+						<div class="col-md-9">
+							<select name="staffs[]" class="multiselect" id="staffs" multiple>
+							<?php foreach($staffs as $staff): ?>
+				                <option value="<?php echo $staff->id; ?>" <?php echo (in_array($staff->id,$form_users)) ? "selected" : ""; ?>><?php echo $staff->name; ?></option>
+
+				            <?php endforeach; ?>
+				            </select>
 						</div>
 					</div>
 					<div class="row" id="fields">
@@ -64,7 +81,12 @@
 							<label for="">NOTIFY MANAGERS</label>
 						</div>
 						<div class="col-md-9">
-							<input type="text" class="form-control">
+							<select name="staffs[]" class="multiselect" id="staffs" multiple>
+							<?php foreach($managers as $manager): ?>
+				                <option value="<?php echo $manager->id; ?>" <?php echo (in_array($manager->id,$form_users)) ? "selected" : ""; ?>><?php echo $manager->name; ?></option>
+
+				            <?php endforeach; ?>
+				            </select>
 						</div>
 					</div>
 				</div>
@@ -73,13 +95,13 @@
 			<div class="row" style="padding-top:50px;">	
 				<div class="col-md-4">	</div>
 				<div class="col-md-4">
-					<div class="row">	
-						<div class="col-md-6">	
-							<a href="	" class="btn btn-primary form-control" style="border-radius:10px;">BACK</a>
-						</div>
-						<div class="col-md-6">	
+					<div class="row">
+						<div class="col-md-2"></div>	
+						<div class="col-md-8">	
+							
 							<input type="submit" name="save" value="SAVE" class="btn btn-primary form-control" style="border-radius:10px;">
 						</div>
+						<div class="col-md-2"></div>
 					</div>
 				</div>
 				<div class="col-md-4">	</div>
@@ -87,3 +109,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+	$(document).ready(function(){
+        $('.multiselect').selectpicker();
+   	});
+</script>

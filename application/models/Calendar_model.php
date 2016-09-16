@@ -38,14 +38,14 @@
 		        	<div class="day-number">{day}</div>
 		        	<div>{content}</div>
 		        {/cal_cell_content}
-		        {cal_cell_content_today}<div class="highlight"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
+		        {cal_cell_content_today}<div class="highlight day-number"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
 
 		        {cal_cell_no_content}<div class="day-number">{day}</div>{/cal_cell_no_content}
-		        {cal_cell_no_content_today}<div class="highlight">{day}</div>{/cal_cell_no_content_today}
+		        {cal_cell_no_content_today}<div class="highlight day-number">{day}</div>{/cal_cell_no_content_today}
 
 		        {cal_cell_blank}&nbsp;{/cal_cell_blank}
 
-		        {cal_cell_other}{day}{/cal_cel_other}
+		        {cal_cell_other}<div class="day-number">{day}</div>{/cal_cel_other}
 
 		        {cal_cell_end}</td>{/cal_cell_end}
 		        {cal_cell_end_today}</td>{/cal_cell_end_today}

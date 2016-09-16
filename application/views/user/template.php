@@ -72,9 +72,9 @@
 								<td width="35%"><?php echo $form->name ?></td>
 								<td width="20%"><?php echo $form->manager_name ?></td>
 								<td width="25%"><?php echo implode('<br>',$form_staffs[$form->id]) ?></td>
-								<td width="20%"><i class="fa fa-pencil-square-o actionicons" aria-hidden="true"></i><i class="fa fa-files-o actionicons" aria-hidden="true"></i><i class="fa fa-trash actionicons" aria-hidden="true"></i></td>
+								<td width="20%"><i class="fa fa-pencil-square-o actionicons" aria-hidden="true"></i><i class="fa fa-files-o actionicons" aria-hidden="true"></i><a href="<?php echo base_url('templates/delete_template/'.$form->id) ?>"><i class="fa fa-trash actionicons" aria-hidden="true"></i></a></td>
 							</tr>
-							<?php endforeach; ?>
+						<?php endforeach; ?>
 						</tbody>
 						
 

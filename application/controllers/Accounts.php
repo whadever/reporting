@@ -27,7 +27,7 @@ class Accounts extends CI_Controller
 				if($this->session->userdata('user_logged') == NULL)
 				{
 					$session = array(
-
+						'company_id'				=> $userdata->company_id,
 						'user_logged'				=> 1,
 						'is_active'					=> $userdata->id,
 						'id_' . $userdata->id 		=> array(

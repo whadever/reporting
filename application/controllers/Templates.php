@@ -2,10 +2,12 @@
 
 	class Templates extends MY_Controller {
 
+		private $company_id;
+
 		function __construct(){
 			parent::__construct();
 			$this->load->model('form_model');
-
+			$this->company_id = $this->session->userdata('company_id');
 		}
 
 		public function index(){
@@ -133,50 +135,38 @@
 			redirect(site_url('templates/assign_staff/'.$form_id));
 		}
 
-		/*the page to assign staffs to a form*/
-		public function staffs($form_id = null){
-
-			// if(is_null($form_id)) exit;
-
-			// //if($this->user_app_role != 'manager') return;
-			// //if($this->user_app_role != 'admin') return; //task #4497
-
-			// $form = $this->db->get_where('forms',$form_id);
-
-			// $form_user_id_arr = array();
-
-			// $res = $this->db->query("select user_id, frequency, deadline from form_users where form_id = {$form->id}")->result();
-
-			// foreach($res as $row){
-
-			// 	$form_user_id_arr[] = $row->user_id;
-			// }
-			// $data['deadline'] = (isset($row))? $row->deadline : null;
-			// $data['title'] = 'Add Staffs';
-
-			// $user=  $this->session->userdata('user');
-			// $data['user']=$user;
-			// $data['wp_company_id'] = $this->wp_company_id;
-
-			// $data['form'] = $form;
-			// $data['form_users'] = $form_user_id_arr;
-			// $data['notify_managers'] = explode(',',$form->managers_to_notify);
-			// $data['frequency'] = (isset($row)) ? $row->frequency : '';
-			// $data['staffs'] = $this->form_model->get_all_staffs();
-			// $data['managers'] = $this->form_model->get_all_managers();
-			/*now a form can be assigned to both staffs and managers */
-			// $data['staffs'] = array_merge($data['staffs'], $data['managers']);
-			// $data['maincontent'] = $this->load->view('form_users',$data,true);
-			// $this->load->view('includes/header',$data);
-			// $this->load->view('home',$data);
-			// $this->load->view('includes/footer',$data);
+	
+		/*assign staffs to a form*/
+		public function staff_add(){
 
 		}
-
+		
 		public function assign_staff($form_id=''){
 			$data['title'] = 'Assign Staff and Frequency';
-			$this->template->load('default','user/assign_staff',$data);
-		}
+			$data['staffs'] = $this->crud_model->get_by_condition('users',array('role !=' => 'admin', 'company_id' => $this->company_id))->result();
+			$data['managers'] = $this->crud_model->get_by_condition('users',array('role !=' => 'staff', 'company_id' => $this->company_id))->result();
+			$data['form'] = $this->crud_model->get_by_condition('forms',array('id' => $form_id))->row();
 
+			$form_user_id_arr = array();
+
+			$res = $this->db->query("select user_id, frequency, deadline from form_users where form_id = {$data['form']->id}")->result();
+
+			foreach($res as $row){
+
+				$form_user_id_arr[] = $row->user_id;
+			}
+
+			$data['form_users'] = $form_user_id_arr;
+
+			$this->template->load('default','user/assign_staff',$data);
+		}	
+
+		public function delete_template($form_id=''){
+			if($form_id != ''){
+				$this->crud_model->delete_data('form_users',array('form_id' => $form_id));
+				$this->crud_model->update_data('forms',array('active' => 0),array('id' => $form_id));				
+			}
+			redirect('templates');
+		}
 	}
  ?>
