@@ -19,102 +19,91 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="col-md-6">
-                        <select name="" id="" class="selectpicker">
-                        <?php foreach($forms as $form) : ?>
+                        <select name="form_id" id="form_id" onchange="get_period()" class="form-control">
                             <option value="">Select Report</option>
-                            <option value=""><?php echo $form->name ?></option>
+                        <?php foreach($forms as $form) : ?>
+                            
+                            <option value="<?php echo $form->id ?>"><?php echo $form->name ?></option>
                         <?php endforeach; ?>
                         </select>
 					</div>
 					<div class="col-md-6">
-                        <select name="" id="" class="selectpicker">
-                        <?php foreach($forms as $form) : ?>
+                        <select name="submit_id" id="period" onchange="display_form()" required="1" class="form-control">
                             <option value="">Select Report Period</option>
-                            <option value=""></option>
-                        <?php endforeach; ?>
+                        
                         </select>               
                     </div>
 				</div>
 				<div class="col-md-6"></div>
 			</div>
-			<!-- <div class="row">
-				<div class="col-md-6">
-					<?php print_fields($form_fields, 1); ?>
-				</div>
-				<div class="col-md-6">
-					<?php print_fields($form_fields, 2); ?>
-				</div>
-			</div> -->
+			<div class="row" id="form_fields">
+
+            </div>
 			
 		</div>
 	</div>
 </div>
 
-<?php
-function print_fields($form_fields, $col){
-?>
 
-    <?php foreach($form_fields as $field): ?>
-        <?php if($field->column == $col): ?>
-            <?php $required = ($field->required == 1) ? "required" : "";?>
-            <div class="form-group">
-                <label class="field-label <?php echo $required; ?>" for="field_<?php echo $field->id; ?>"><?php echo $field->title; ?></label>
-
-                <?php if($field->type == 'text'): ?>
-                    <textarea name="field_<?php echo $field->id; ?>" class="form-control" id="" placeholder="" <?php echo $required; ?>></textarea>
-                <?php endif; ?>
-
-                <?php if($field->type == 'select'): ?>
-                    <select name="field_<?php echo $field->id; ?>"  class="form-control">
-                        <?php if($required == ""): ?>
-                            <option value="">---select---</option>
-                        <?php endif; ?>
-                        <?php foreach($field->select_options as $val): ?>
-                            <option value="<?php echo $val; ?>"> <?php echo $val; ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                <?php endif; ?>
-
-                <?php if($field->type == 'date'): ?>
-                    <input type="text" name="field_<?php echo $field->id; ?>" class="form-control date" id="" placeholder="" <?php echo $required; ?>>
-                <?php endif; ?>
-
-                <?php if($field->type == 'radio-group-yes-no-na'): ?>
-
-                    <input type="radio" name="field_<?php echo $field->id; ?>" value="yes"> Yes
-                    <input type="radio" name="field_<?php echo $field->id; ?>" value="no"> No
-                    <input type="radio" name="field_<?php echo $field->id; ?>" value="na"> N/A
-
-                <?php endif; ?>
-
-                <?php if($field->type == 'numbers'): ?>
-
-                    <select name="field_<?php echo $field->id; ?>" class="form-control">
-                        <?php if($required == ""): ?>
-                            <option value="">---select---</option>
-                        <?php endif; ?>
-                        <?php for($i=0; $i <= 100; $i++ ): ?>
-                            <option value="<?php echo $i; ?>"> <?php echo $i; ?></option>
-                        <?php endfor; ?>
-                    </select>
-
-                <?php endif; ?>
-
-                <?php if($field->type == 'document'): ?>
-                    <input type="file" name="field_<?php echo $field->id; ?>" class="" id="" <?php echo $required; ?>>
-                <?php endif; ?>
-
-
-            </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
-
-<?php
-}
-?>
 
 <script>
     $(document).ready(function(){
         $('.selectpicker').selectpicker();
     });
+</script>
+
+<script>
+    function get_period(){
+        $('#form_fields').empty();
+        var form_id = $('#form_id').val();
+
+
+        if(form_id != ''){
+
+            $.ajax({
+
+                url :  "<?php echo base_url('templates/get_period')?>"+ "/" + form_id,
+                type : 'GET',
+                cache : false,
+                success: function(result){
+                    
+
+                    $('#period').empty();
+                    $('#period').append(result);
+                   
+                }
+
+            });
+
+       }else{
+            $('#period').empty();
+            $('#period').append('<option value="">Select Report Period</option>');
+       }
+    }
+</script>
+
+<script>
+    function display_form(){
+        var form_id = $('#form_id').val();
+
+        if(form_id != ''){
+
+            $.ajax({
+
+                url :  "<?php echo base_url('templates/print_fields')?>"+ "/" + form_id,
+                type : 'GET',
+                cache : false,
+                success: function(result){
+
+                    $('#form_fields').empty();
+                    $('#form_fields').append(result);
+                   
+                }
+
+            });
+
+       }else{
+            $('#form_fields').empty();
+       }
+    }
 </script>
