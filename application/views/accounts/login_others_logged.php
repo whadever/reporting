@@ -5,7 +5,7 @@
                         foreach ($this->session->userdata as $user)
                         { 
                           //Skip the first 3 keys
-                          if($i < 3)
+                          if($i < 4)
                           {
                             $i++;
                             continue;

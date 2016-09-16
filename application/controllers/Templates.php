@@ -178,5 +178,12 @@
 			$this->template->load('default','user/assign_staff',$data);
 		}
 
+		public function submit_report($user_id, $company_id){
+			$data['title'] = 'Submit Report';
+			$data['forms'] = $this->form_model->get_staff_forms($user_id,$company_id);
+			$this->template->load('default', 'user/submit_report',$data);
+
+		}
+
 	}
  ?>

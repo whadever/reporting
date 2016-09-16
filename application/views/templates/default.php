@@ -174,7 +174,7 @@
         </div>
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="border-bottom: none;font-size:25px!important; display:none">&times;</a>
         <a href="<?php echo base_url('main') ?>"><i class="fa fa-home" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Home</span></a>
-        <a href="<?php echo base_url('') ?>" ><i id="submit-button" class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
+        <a href="<?php echo base_url('templates/submit_report/'.$this->session->userdata('is_active').'/'.$this->session->userdata('company_id')) ?>" ><i id="submit-button" class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
         <a href="<?php echo base_url('templates') ?>" ><i id="template-button" class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
         <a href="<?php echo base_url('user/settings/'.$this->session->userdata('is_active')) ?>" ><i id="setting-button" class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
 
@@ -196,12 +196,12 @@
                 <a class="show-pop pull-right" data-animation="pop"  data-placement="vertical"
                     data-content="<?php if($this->session->userdata('user_logged')){
 
-                        echo"<a href='".base_url('accounts/switch_account/'.$active_user->id)."' style='display:block'><img src='".$active_photo."' width='80'><div style='display:inline-block'><p>".$active_user->name."</p><p>".$active_user->email."</p> </div></a>";
+                        echo "<a href='".base_url('accounts/switch_account/'.$active_user->id)."' style='display:block'><img src='".$active_photo."' width='80'><div style='display:inline-block'><p>".$active_user->name."</p><p>".$active_user->email."</p> </div></a>";
                         $i = 0;
                         foreach ($this->session->userdata as $user)
                         { 
-                          //Skip the first 3 keys
-                          if($i < 3)
+                          //Skip the first 4 keys
+                          if($i < 4)
                           {
                             $i++;
                             continue;

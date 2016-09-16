@@ -30,10 +30,12 @@ class Accounts extends CI_Controller
 
 						'user_logged'				=> 1,
 						'is_active'					=> $userdata->id,
+						'company_id'				=> $userdata->company_id,
 						'id_' . $userdata->id 		=> array(
 
 							'user_id' 	=> $userdata->id,
-							'username'	=> $userdata->username
+							'username'	=> $userdata->username,
+							'company_id'=> $userdata->company_id
 
 							)
 
