@@ -6,8 +6,10 @@
 			$this->db->select('forms.*,users.name as manager_name');
 			$this->db->from('forms');
 			$this->db->join('users','users.id = forms.manager_id');
+			$this->db->where('forms.active',1);
 			return $this->db->get()->result();
 		}
+
 
 		function get_form_fields($form_id){
 			$this->db->select('forms.name, form_fields.*');
@@ -23,7 +25,6 @@
 			return $this->db->get()->result();
 
 		}
-
 	}
 
  ?>

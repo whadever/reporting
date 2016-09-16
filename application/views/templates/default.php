@@ -189,9 +189,9 @@
      
              
            <div class="row" style="padding: 30px 20px 20px 20px; text-align:right">
-             <div class="col-xs-12">
-
-                <button type="button" class="btn btn-primary pull-left" id="webtour" style="margin-left:10px;">Start Web Tour</button>
+             <div class="col-md-3"><button type="button" class="btn btn-primary pull-left" id="webtour" style="margin-left:10px;">Start Web Tour</button></div>
+              <div class="col-md-4"></div>
+             <div class="col-md-5">                
                 
                 <a class="show-pop pull-right" data-animation="pop"  data-placement="vertical"
                     data-content="<?php if($this->session->userdata('user_logged')){
@@ -200,7 +200,9 @@
                         $i = 0;
                         foreach ($this->session->userdata as $user)
                         { 
+
                           //Skip the first 4 keys
+
                           if($i < 4)
                           {
                             $i++;
