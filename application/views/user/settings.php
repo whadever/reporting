@@ -52,6 +52,7 @@
 		<div class="row" id="fields" style="padding-top:20px">	
 			
 			<div class="col-md-6">
+				<input type="hidden" name="id" id="id" value="<?php echo $users->id ?>">
 				<div class="form-group">	
 					<label for="">Name</label>
 					<input type="text" class="form-control" name="name" value="<?php echo $users->name ?>">
@@ -75,7 +76,6 @@
 					<input type="text" class="form-control" name="username" value="<?php echo $users->username ?>" disabled="disabled">
 				</div>
 				<div id="changepassword">	
-					
 					<a onclick="change_password()" style="cursor:pointer;">Change Password</a>
 				</div>
 			</div>
@@ -102,10 +102,47 @@
 </div>
 <script>
 	function change_password(){
+		var id=$('#id').val();
 		$('#changepassword').empty();
-		$('#changepassword').append('<div class="form-group"><label for="old_pass">Old Password</label> <input type="text" class="form-control" name="old_pass"></div><div class="form-group"><label for="new_pass">New Password</label> <input type="text" name="new_pass" class="form-control"></div><div class="form-group"><label for="re_pass">Re-Type Password</label> <input type="text" class="form-control" name="re_pass"></div>');
+		$('#changepassword').append('<div class="form-group"><label for="old_pass">Old Password</label> <input type="text" class="form-control" name="old_pass" id="old_pass" onblur="check_password()" ><div id="old_pass_error" style="margin-top:5px;"></div></div>');
+		$('#changepassword').append('<div class="form-group"><label for="new_pass">New Password</label> <input type="text" name="new_pass" id="new_pass" class="form-control" onblur="match_password()"></div>');
+		$('#changepassword').append('<div class="form-group"><label for="re_pass">Re-Type Password</label> <input type="text" class="form-control" name="re_pass" id="re_pass" onblur="match_password()"><div id="re_pass_error" style="margin-top:5px;color:red;"></div></div>');
 	}
+</script>
+<script>
 	function check_password(){
+
 		var password = $("#old_pass").val();
+		if(password!=''){
+			$.ajax({
+	          url: "<?php echo base_url('user/check_password/'.$users->id)?>",
+	          data: {old_pass:password},
+	          type: 'POST',
+	          cache : false,
+	          success: function(result){
+	            if(result == 'mismatch'){
+	              $('#old_pass_error').empty();
+	              $('#old_pass_error').append('<p style="color:red"><i class="fa fa-times-circle-o" aria-hidden="true"></i> Password that you type is wrong</p>');
+	            }else if(result == 'match'){
+	              $('#old_pass_error').empty();
+	            } 
+          }
+        });
+      }else{
+	      $('#old_pass_error').empty();
+      }
+	}
+</script>
+<script>
+	function match_password(){
+		var new_password=$('#new_pass').val();
+		var re_password=$('#re_pass').val();
+		if(new_password!=re_password){
+			$('#re_pass_error').empty();
+			$('#re_pass_error').append('<i class="fa fa-times-circle-o" aria-hidden="true"></i>Password doesn\'t match');
+		}
+		else{
+			$('#re_pass_error').empty();
+		}
 	}
 </script>

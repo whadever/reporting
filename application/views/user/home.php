@@ -42,7 +42,7 @@
 		width: 14.28%;
 	}
 	#cal-body td.today{
-		border: 2px solid #cc1618;
+		border: 2px solid #16a085;
 	}
 	.day-number {
 		color: #cc1618;
@@ -140,7 +140,8 @@
 				<div class="col-xs-12">
 					<p class="page_subtitle">YOUR REPORTS</p>
 					<input type="text" class="search pull-right form-control" name="name_search" placeholder="Search report by name" style="margin-right: 0">
-					<input type="text" class="search pull-right form-control" id="datepicker1" name="date_search" placeholder="Search report by date">
+					<input type="text" class="search pull-right form-control" id="datepicker1" readonly="readonly" name="date_search" placeholder="Search report by date">
+		
 				</div>
 			</div>
 		</div>
@@ -179,11 +180,31 @@
 		    minViewMode: "months"
 
         });
+        
     });
 </script>
 
 <script>
+$(document).ready(function(){
+    $('#datepicker1').on("changeDate", function() {
+	    setTimeout(function(){
+	    	var date = $('#datepicker1').val().split('-');
 
+
+
+	    	$.ajax({
+	          url: "<?php echo base_url('main/index')?>"+ "/" + date[0] + "/" + date[1] + "",
+	          type: 'GET',
+	          cache : false,
+	          success: function(result){
+	         
+	            
+	            location.replace("<?php echo base_url('main/index') ?>"+"/"+date[0] + "/" + date[1]);
+	          }
+	        });
+	    },1);
+	});
+});
 
 </script>
 
