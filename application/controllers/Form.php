@@ -6,6 +6,15 @@
 		private $user_id;
 		private $user_role;
 
+		function __construct(){
+			parent::__construct();
+			$this->load->model('form_model');
+			$this->company_id = $this->session->userdata('company_id');
+			$this->user_id = $this->session->userdata('is_active');
+			$this->user_role = $this->crud_model->get_by_condition('users',array('id' => $this->user_id))->row('role');
+			
+		}
+
 		public function submit_report(){
 			$data['title'] = 'Submit Report';
 			$data['forms'] = $this->form_model->get_staff_forms($this->user_id,$this->company_id);
