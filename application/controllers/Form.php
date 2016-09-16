@@ -76,7 +76,7 @@
 			                 endif; 
 
 			                 if($field->type == 'date'): 
-			                    $output .= '<input type="text" name="field_'.$field->id.' " class="form-control date" id="" placeholder=""'. $required.' >';
+			                    $output .= '<input type="date" name="field_'.$field->id.' " class="form-control date" id="" placeholder=""'. $required.' >';
 			                 endif; 
 
 			                 if($field->type == 'radio-group-yes-no-na'): 
@@ -132,7 +132,7 @@
 			                 endif; 
 
 			                 if($field->type == 'date'): 
-			                    $output .= '<input type="text" name="field_'.$field->id.' " class="form-control date" id="" placeholder=""'. $required.' >';
+			                    $output .= '<input type="date" name="field_'.$field->id.' " class="form-control date" id="" placeholder=""'. $required.' >';
 			                 endif; 
 
 			                 if($field->type == 'radio-group-yes-no-na'): 
