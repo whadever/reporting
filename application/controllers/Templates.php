@@ -202,37 +202,6 @@
 			$this->template->load('default','user/assign_staff',$data);
 		}	
 
-		public function submit_report(){
-			$data['title'] = 'Submit Report';
-			$data['forms'] = $this->form_model->get_staff_forms($this->user_id,$this->company_id);
-			
-			$this->template->load('default', 'user/submit_report',$data);
-
-		}
-
-		public function get_period($form_id = ''){
-
-			$form_period = $this->crud_model->get_by_condition('form_submits', 
-				array('user_id'=>$this->user_id, 'is_submit' => 0,'form_id' => $form_id))->result();
-
-			$period = '';
-			if($form_period){
-				$period .= '<option value="">Select Report Period</option>';
-				foreach ($form_period as $row) {
-					$deadline = explode(' ',$row->deadline);
-
-					$period .= '<option value="'.$row->id.'">'.$deadline[0].'</option>';
-				}
-			}
-			else{
-
-				$period .= '<option value="">You dont have blabla</option>';
-			}
-				
-
-			echo $period;
-			
-		}
 
 		public function delete_template($form_id=''){
 			if($form_id != ''){
@@ -242,7 +211,6 @@
 			redirect('templates');
 		}
 
-		
 		public function print_fields($form_id){
 			$form_fields = $this->crud_model->get_by_condition('form_fields',array('form_id' => $form_id))->result();
 			
@@ -369,6 +337,7 @@
 
 
 		}
+
 
 	}
  ?>

@@ -62,7 +62,7 @@
 
             $.ajax({
 
-                url :  "<?php echo base_url('templates/get_period')?>"+ "/" + form_id,
+                url :  "<?php echo base_url('form/get_period')?>"+ "/" + form_id,
                 type : 'GET',
                 cache : false,
                 success: function(result){
@@ -90,7 +90,7 @@
 
             $.ajax({
 
-                url :  "<?php echo base_url('templates/print_fields')?>"+ "/" + form_id,
+                url :  "<?php echo base_url('form/print_fields')?>"+ "/" + form_id,
                 type : 'GET',
                 cache : false,
                 success: function(result){
