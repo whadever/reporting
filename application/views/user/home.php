@@ -187,7 +187,22 @@
 <script>
 $(document).ready(function(){
     $('#datepicker1').on("changeDate", function() {
-	    alert('changed');
+	    setTimeout(function(){
+	    	var date = $('#datepicker1').val().split('-');
+
+
+
+	    	$.ajax({
+	          url: "<?php echo base_url('main/index')?>"+ "/" + date[0] + "/" + date[1] + "",
+	          type: 'GET',
+	          cache : false,
+	          success: function(result){
+	         
+	            
+	            location.replace("<?php echo base_url('main/index') ?>"+"/"+date[0] + "/" + date[1]);
+	          }
+	        });
+	    },1);
 	});
 });
 

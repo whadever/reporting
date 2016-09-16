@@ -138,7 +138,9 @@
 	
 		/*assign staffs to a form*/
 		public function staff_add(){
-
+			echo "<pre>";
+			print_r($this->input->post());
+			echo "</pre>";
 		}
 		
 		public function assign_staff($form_id=''){

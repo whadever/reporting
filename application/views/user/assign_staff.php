@@ -24,7 +24,7 @@
 		</div>
 	</div>
 </div>
-
+<?php echo form_open_multipart('templates/staff_add/') ?>
 <div class="row" style="padding:15px 10px">
 	<div class="col-xs-12">
 		<div class="container">
@@ -73,7 +73,7 @@
 							<label for="">DEADLINE</label>
 						</div>
 						<div class="col-md-9">
-							<input type="time" class="form-control">
+							<input type="time" name="deadline" class="form-control">
 						</div>
 					</div>
 					<div class="row" id="fields">
@@ -81,7 +81,7 @@
 							<label for="">NOTIFY MANAGERS</label>
 						</div>
 						<div class="col-md-9">
-							<select name="staffs[]" class="multiselect" id="staffs" multiple>
+							<select name="managers[]" class="multiselect" id="managers" multiple>
 							<?php foreach($managers as $manager): ?>
 				                <option value="<?php echo $manager->id; ?>" <?php echo (in_array($manager->id,$form_users)) ? "selected" : ""; ?>><?php echo $manager->name; ?></option>
 
@@ -98,7 +98,7 @@
 					<div class="row">
 						<div class="col-md-2"></div>	
 						<div class="col-md-8">	
-							
+							<input type="hidden" name="form_id" value="<?php echo $form->id ?>">
 							<input type="submit" name="save" value="SAVE" class="btn btn-primary form-control" style="border-radius:10px;">
 						</div>
 						<div class="col-md-2"></div>
@@ -109,7 +109,7 @@
 		</div>
 	</div>
 </div>
-
+<?php echo form_close() ?>
 <script>
 	$(document).ready(function(){
         $('.multiselect').selectpicker();

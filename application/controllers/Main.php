@@ -19,6 +19,7 @@ class Main extends MY_Controller {
         $data['calendar'] = $this->calendar_model->generate($year,$month);
 
 		$this->template->load('default', 'user/home', $data);
+
 	}
 
 	/* draws a calendar */
