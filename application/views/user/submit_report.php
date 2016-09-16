@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="<?php echo base_url() ?>css/bootstrap-select.css">
+<script src="<?php echo base_url() ?>js/bootstrap-select.js"></script>
+
+
 <div class="row" style="background-color: #f4f4f4; padding: 15px 10px">
 	<div class="col-xs-12">
 		<div class="container">
@@ -15,13 +19,21 @@
 			<div class="row">
 				<div class="col-md-6">
 					<div class="col-md-6">
-						Select Report
-						<pre>
-                            <?php print_r($forms) ?>                  
-                        </pre>
-                        <select name="" id=""></select>
+                        <select name="" id="" class="selectpicker">
+                        <?php foreach($forms as $form) : ?>
+                            <option value="">Select Report</option>
+                            <option value=""><?php echo $form->name ?></option>
+                        <?php endforeach; ?>
+                        </select>
 					</div>
-					<div class="col-md-6">Select report period</div>
+					<div class="col-md-6">
+                        <select name="" id="" class="selectpicker">
+                        <?php foreach($forms as $form) : ?>
+                            <option value="">Select Report Period</option>
+                            <option value=""></option>
+                        <?php endforeach; ?>
+                        </select>               
+                    </div>
 				</div>
 				<div class="col-md-6"></div>
 			</div>
@@ -100,3 +112,9 @@ function print_fields($form_fields, $col){
 <?php
 }
 ?>
+
+<script>
+    $(document).ready(function(){
+        $('.selectpicker').selectpicker();
+    });
+</script>
