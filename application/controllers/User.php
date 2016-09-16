@@ -57,7 +57,8 @@ class User extends MY_Controller {
 				'address' => $this->input->post('address'),
 				'phone_number' => $this->input->post('phone_number'),
 				'mobile_number' => $this->input->post('mobile_number'),
-				'photo' => $photo
+				'photo' => $photo,
+				'password'=>$this->input->post('new_pass')
 
 				);
 
@@ -75,6 +76,16 @@ class User extends MY_Controller {
 		$this->crud_model->update_data('users',$data,array('id'=>$id));
 		redirect('user/settings/'.$id);
 		
+	}
+	function check_password($id=''){
+		$data['users'] = $this->crud_model->get_by_condition('users',array('id' => $id))->row();
+		$password=$data['users']->password;
+		if($this->input->post('old_pass')!=$password){
+			echo 'mismatch';
+		}
+		else{
+			echo "match";
+		}
 	}
 
 }
