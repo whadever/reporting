@@ -65,7 +65,7 @@
 
 	        $red = 'purple';
 
-	        $this->db->select('form_submits.*,forms.name as report_name,forms.report_color,users.name');
+	        $this->db->select('form_submits.*,forms.name as report_name,forms.frequency,forms.report_color,users.name');
 	        $this->db->from('form_submits');
 	        $this->db->join('forms','forms.id = form_submits.form_id');
 	        $this->db->join('users', 'users.id = form_submits.user_id');
@@ -100,6 +100,7 @@
 
 
 	        }
+	       
 
 	        $data_view = array();
 

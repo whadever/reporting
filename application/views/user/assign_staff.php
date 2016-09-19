@@ -59,12 +59,12 @@
 						</div>
 						<div class="col-md-9">
 						<strong>
-							<input type="radio" name="report_frequency" value="daily"> DAILY <br>
-							<input type="radio" name="report_frequency" value="weekly"> WEEKLY <br>
-							<input type="radio" name="report_frequency" value="fortnightly"> FORTNIGHTLY <br>
-							<input type="radio" name="report_frequency" value="monthly"> MONTHLY <br>
-							<input type="radio" name="report_frequency" value="yearly"> YEARLY <br>
-							<input type="radio" name="report_frequency" value="custom"> CUSTOM DATE <br>
+							<input type="radio" class="frequency" name="report_frequency" value="daily" checked="checked"> DAILY <br>
+							<input type="radio" class="frequency" name="report_frequency" value="weekly"> WEEKLY <br>
+							<input type="radio" class="frequency" name="report_frequency" value="fortnightly"> FORTNIGHTLY <br>
+							<input type="radio" class="frequency" name="report_frequency" value="monthly"> MONTHLY <br>
+							<input type="radio" class="frequency" name="report_frequency" value="yearly"> YEARLY <br>
+							<input type="radio" class="frequency" name="report_frequency" value="custom"> CUSTOM DATE <br>
 						</strong>
 						</div>
 					</div>
@@ -72,7 +72,7 @@
 						<div class="col-md-3">
 							<label for="">DEADLINE</label>
 						</div>
-						<div class="col-md-9">
+						<div class="col-md-9" id="deadline">
 							<input type="time" name="deadline" class="form-control">
 						</div>
 					</div>
@@ -98,6 +98,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="col-md-2"></div>
 			</div>
 			<div class="row" style="padding-top:50px;">	
@@ -118,9 +119,80 @@
 		</div>
 	</div>
 </div>
+
+<div id="weekly" style="display:none">
+	<select name="week" class="form-control" id="week">
+		<option value="monday">MONDAY</option>
+		<option value="tuesday">TUESDAY</option>
+		<option value="wednesday">WEDNESDAY</option>
+		<option value="thursday">THURSDAY</option>
+		<option value="friday">FRIDAY</option>
+	</select>
+	<input type="time" name="deadline" class="form-control">
+</div>
+
+<div id="monthly" style="display:none">
+	<select name="day" id="day" class="form-control">
+		<?php for($i = 1; $i <= 31; $i++): ?>
+			<option value="<?php echo $i ?>"><?php echo $i ?></option>
+		<?php endfor; ?>
+	</select>
+	<input type="time" name="deadline" class="form-control">
+</div>
+
+<div id="yearly" style="display:none">
+	<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">
+	<input type="time" name="deadline" class="form-control">
+</div>
+
+<div id="custom" style="display:none">
+	<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">
+	<input type="time" name="deadline" class="form-control">
+</div>
+
 <?php echo form_close() ?>
+
 <script>
 	$(document).ready(function(){
         $('.multiselect').selectpicker();
+
+        $('.frequency').change(function(){
+        	switch($(this).val()){
+        		case 'daily':
+        			$('#deadline').empty();
+        			$('#deadline').append('<input type="time" name="deadline" class="form-control">');
+        			break;
+        		case 'weekly':
+        			$('#deadline').empty();
+        			$('#deadline').append($('#weekly').html());
+        			break;
+    			case 'fortnightly':
+        			$('#deadline').empty();
+        			$('#deadline').append($('#weekly').html());
+        			break;
+    			case 'monthly':
+        			$('#deadline').empty();
+        			$('#deadline').append($('#monthly').html());
+
+        			break;
+    			case 'yearly':
+        			$('#deadline').empty();
+        			$('#deadline').append($('#yearly').html());
+        			$('#datepicker2').datepicker({
+        				format : "dd-mm"
+        			});
+        			break;
+        		case 'custom':
+        			$('#deadline').empty();
+        			$('#deadline').append($('#yearly').html());
+        			$('#datepicker2').datepicker({
+        				format : "dd-mm"
+        			});
+        		default:
+        			break;
+
+
+        	}
+        });
    	});
 </script>

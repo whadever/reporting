@@ -153,8 +153,7 @@
 					$data_form_user = array(
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
-							'frequency' => $this->input->post('report_frequency'),
-							'deadline' => $this->input->post('deadline'),
+							
 						);
 
 					$data_form_submit = array(
@@ -168,7 +167,11 @@
 					$this->crud_model->insert_data('form_users',$data_form_user);
 					$this->crud_model->insert_data('form_submits',$data_form_submit);
 				}
-
+				$data_forms = array(
+						'frequency' => $this->input->post('report_frequency'),
+						'deadline' => $this->input->post('deadline'),
+					);
+				$this->crud_model->update_data('forms',$data_forms,array('id'=>$this->input->post('form_id')));
 				if($this->input->post('managers')){
 					$managers_to_notify = implode(', ', $this->input->post('managers'));
 

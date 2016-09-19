@@ -102,7 +102,7 @@
 </div>
 <script>
 	function change_password(){
-		var id=$('#id').val();
+		
 		$('#changepassword').empty();
 		$('#changepassword').append('<div class="form-group"><label for="old_pass">Old Password</label> <input type="text" class="form-control" name="old_pass" id="old_pass" onblur="check_password()" ><div id="old_pass_error" style="margin-top:5px;"></div></div>');
 		$('#changepassword').append('<div class="form-group"><label for="new_pass">New Password</label> <input type="text" name="new_pass" id="new_pass" class="form-control" onblur="match_password()"></div>');
