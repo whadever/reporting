@@ -15,7 +15,7 @@ class Main extends MY_Controller {
         $this->template->load('default','user/faq');
     }
 
-	public function index($year = '', $month = '')
+	public function index($year = '', $month = '', $user_id = '')
 
 	{  
         if($user_id == ''){
