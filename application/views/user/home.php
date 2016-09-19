@@ -153,7 +153,7 @@
 		<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<div id="cal-body" class="wrap">
+				<div id="cal-body" class="wrap" style="margin-bottom:20px;">
 					<?php echo $calendar ?>
 				</div>
 			</div>

@@ -202,6 +202,53 @@
 			$this->template->load('default','user/assign_staff',$data);
 		}	
 
+		public function copy_template($form_id=''){
+			$form=$this->crud_model->get_by_condition('forms',array('id'=>$form_id))->row();
+			if($form){
+				$data=array(
+					'name'=>$form->name,
+					'manager_id'=>$form->manager_id,
+					'company_id'=>$form->company_id,
+					'managers_to_notify'=>$form->managers_to_notify,
+					'report_color'=>$form->report_color,
+					'created'=>date("Y-m-d H:i:s"),
+					'active'=>1
+
+					);
+				$this->db->insert('forms',$data);
+				$fid=$this->db->insert_id();
+				$fields=$this->crud_model->get_by_condition('form_fields',array('form_id'=>$form_id))->result();
+				/*Copy fields*/
+				foreach($fields as $field){
+					$data = array(
+						'form_id' => $form_id,
+						'column' => $field->column,
+						'order' => $field->order,
+						'type' => $field->type,
+						'title' => $field->title,
+						'select_options' => (isset($field->select_options)) ? serialize($field->select_options) : null,
+						'required' => ($field->required == 1) ? 1 : 0
+					);
+				}
+				redirect(site_url('templates/assign_staff/'.$fid));
+			}
+		}
+
+		public function edit_template($form_id=''){
+			$date['title']='Edit Template';
+			$data['form']=$this->crud_model->get_by_condition('forms',array('id'=>$form_id))->row();
+			
+			$data['form_fields'] = $this->crud_model->get_by_condition('form_fields',array('form_id'=>$form_id))->result();
+			
+			array_walk($data['form_fields'],function($el){
+				if($el->select_options){
+					$el->select_options = unserialize($el->select_options);
+				}
+			});
+			$this->template->load('default', 'user/add_template',$data);
+
+		}
+
 
 		public function delete_template($form_id=''){
 			if($form_id != ''){

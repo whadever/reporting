@@ -11,9 +11,6 @@
 		}
 
 
-		function get_form_fields($form_id){
-			$this->db->select('forms.name, form_fields.*');
-		}
 
 		function get_staff_forms($user_id, $company_id){
 
