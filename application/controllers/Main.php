@@ -11,7 +11,12 @@ class Main extends MY_Controller {
         
     }
 
-	public function index($year = '', $month = '',$user_id = '')
+    public function faq(){
+        $this->template->load('default','user/faq');
+    }
+
+	public function index($year = '', $month = '')
+
 	{  
         if($user_id == ''){
             $user_id = $this->session->userdata('is_active');
