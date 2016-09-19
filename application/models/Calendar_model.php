@@ -38,7 +38,8 @@
 		        	<div class="day-number">{day}</div>
 		        	<div>{content}</div>
 		        {/cal_cell_content}
-		        {cal_cell_content_today}<div class="highlight day-number"><a href="{content}">{day}</a></div>{/cal_cell_content_today}
+		        {cal_cell_content_today}<div class="highlight day-number">{day}
+		        	<div>{content}</div>{/cal_cell_content_today}
 
 		        {cal_cell_no_content}<div class="day-number">{day}</div>{/cal_cell_no_content}
 		        {cal_cell_no_content_today}<div class="highlight day-number">{day}</div>{/cal_cell_no_content_today}
@@ -57,25 +58,57 @@
 
 		}
 
-		function generate($year,$month){
+		function generate($year,$month,$user_id){
 			
 
 	        $this->load->library('calendar',$this->conf);
 
 	        $red = 'purple';
 
-	        $data = array('<a class="content" data-toggle="tooltip" data-placement="top" title="Submitted on 20-09-2013" style="background-color:'.$red.'" href="">test1</a>',
-	        	'<a class="content" data-toggle="tooltip" data-placement="top" title="Submitted on 13-09-2013" style="background-color:black" href="">test2</a>');
+	        $this->db->select('form_submits.*,forms.name as report_name,forms.report_color,users.name');
+	        $this->db->from('form_submits');
+	        $this->db->join('forms','forms.id = form_submits.form_id');
+	        $this->db->join('users', 'users.id = form_submits.user_id');
+	        $this->db->where('form_submits.user_id',$user_id);
+	        $user_reports = $this->db->get()->result();
 
-	        $content = implode(' ',$data);
+	        $data = array();
 
-	        $data_cal = array(
+	        foreach($user_reports as $report){
+	        	$date = explode(' ', $report->deadline);
+	        	$date = explode('-', $date[0]);
+	        	$report_year = $date[0];
+	        	$report_month = $date[1];
+	        	$report_day = $date[2];
 
-	        		'20' => $content,
+	        	if($year == $report_year && $month == $report_month){
+	        		$content = 'Not Submitted';
+	        		if($report->submit_date != NULL){
+	        			$content = 'submitted on '.$report->submit_date;
+	        		}
 
-	        	);
+	        		if(array_key_exists($report_day,$data)){
+	        			array_push($data[$report_day],'<a class="content" data-toggle="tooltip" data-placement="top" title="'.$content.'" style="background-color:'.$report->report_color.'" href="">'.$report->report_name.'</a>');
+	        			
 
-	        return $this->calendar->generate($year,$month,$data_cal);
+	        		}else{
+	        			$data[$report_day] = array('<a class="content" data-toggle="tooltip" data-placement="top" title="'.$content.'" style="background-color:'.$report->report_color.'" href="">'.$report->report_name.'</a>');
+	        		}
+
+	        		
+	        	}
+
+
+	        }
+
+	        foreach ($data as $day => $value) {
+	        	$view = implode(' ',$value);
+	        	$data_view[$day] = $view; 
+	        }
+
+	       
+
+	        return $this->calendar->generate($year,$month,$data_view);
 		}
 
 	}

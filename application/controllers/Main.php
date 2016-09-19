@@ -11,12 +11,21 @@ class Main extends MY_Controller {
         
     }
 
-	public function index($year = '', $month = '')
+	public function index($year = '', $month = '',$user_id = '')
 	{  
+        if($user_id == ''){
+            $user_id = $this->session->userdata('is_active');
+        }
+        if($year == '' || $month == ''){
+            $year = date('Y');
+            $month = date('m');
+        }
+        echo $year;
+        echo $month;
         $this->load->model('calendar_model');
 
 		$data['title'] = 'Dashboard';
-        $data['calendar'] = $this->calendar_model->generate($year,$month);
+        $data['calendar'] = $this->calendar_model->generate($year,$month,$user_id);
 
 		$this->template->load('default', 'user/home', $data);
 
