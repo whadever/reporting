@@ -34,12 +34,17 @@
 	
 	#cal-body td {
 		border: 1px solid gray;
-		height: 100px;
+		
 		margin: 2px;
 		padding: 18px 8px 8px;
-		position: relative;
+		
 		vertical-align: top;
 		width: 14.28%;
+		height: 100px;
+
+	}
+	#cal-body tr{
+		height: 0;
 	}
 	#cal-body td.today{
 		border: 2px solid #16a085;
@@ -47,7 +52,7 @@
 	.day-number {
 		color: #cc1618;
 		left: 2px;
-		position: absolute;
+		
 		top: 0;
 	}
 	
@@ -69,6 +74,7 @@
 	    padding-left: 5px;
 	    color: white;
 	    margin-top: 5px;
+
 	}
 
 	a:hover{

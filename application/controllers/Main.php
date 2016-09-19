@@ -3,12 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Main extends MY_Controller {
 
+    private $company_id;
+    private $user_id;
+    private $user_role;
+
     function __construct(){
-
         parent::__construct();
+        $this->load->model('calendar_model');
+        $this->company_id = $this->session->userdata('company_id');
+        $this->user_id = $this->session->userdata('is_active');
+        $this->user_role = $this->crud_model->get_by_condition('users',array('id' => $this->user_id))->row('role');
 
-
-        
     }
 
     public function faq(){
@@ -25,12 +30,15 @@ class Main extends MY_Controller {
             $year = date('Y');
             $month = date('m');
         }
-        echo $year;
-        echo $month;
-        $this->load->model('calendar_model');
+       
 
 		$data['title'] = 'Dashboard';
-        $data['calendar'] = $this->calendar_model->generate($year,$month,$user_id);
+        if($this->user_role != 'admin'){
+            $data['calendar'] = $this->calendar_model->generate($year,$month,$user_id);    
+        }else{
+            $data['calendar'] = $this->calendar_model->generate($year,$month,$user_id);
+        }
+        
 
 		$this->template->load('default', 'user/home', $data);
 

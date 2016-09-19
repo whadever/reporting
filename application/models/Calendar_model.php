@@ -36,10 +36,10 @@
 
 		        {cal_cell_content}
 		        	<div class="day-number">{day}</div>
-		        	<div>{content}</div>
+		        	{content}
 		        {/cal_cell_content}
 		        {cal_cell_content_today}<div class="highlight day-number">{day}
-		        	<div>{content}</div>{/cal_cell_content_today}
+		        	{content}{/cal_cell_content_today}
 
 		        {cal_cell_no_content}<div class="day-number">{day}</div>{/cal_cell_no_content}
 		        {cal_cell_no_content_today}<div class="highlight day-number">{day}</div>{/cal_cell_no_content_today}
