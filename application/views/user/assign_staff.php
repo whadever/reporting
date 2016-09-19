@@ -89,6 +89,14 @@
 				            </select>
 						</div>
 					</div>
+					<div class="row" id="fields">
+						<div class="col-md-3">
+							<label for="">REPORT COLOR</label>
+						</div>
+						<div class="col-md-9">
+							<input class="jscolor" id="report_color" name="report_color" value="FFFFFF">
+						</div>
+					</div>
 				</div>
 				<div class="col-md-2"></div>
 			</div>

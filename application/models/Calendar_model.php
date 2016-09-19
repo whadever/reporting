@@ -36,10 +36,10 @@
 
 		        {cal_cell_content}
 		        	<div class="day-number">{day}</div>
-		        	{content}
+		        	<div class="content-wrapper">{content}</div>
 		        {/cal_cell_content}
 		        {cal_cell_content_today}<div class="highlight day-number">{day}
-		        	{content}{/cal_cell_content_today}
+		        	<div class="content-wrapper">{content}</div>{/cal_cell_content_today}
 
 		        {cal_cell_no_content}<div class="day-number">{day}</div>{/cal_cell_no_content}
 		        {cal_cell_no_content_today}<div class="highlight day-number">{day}</div>{/cal_cell_no_content_today}
@@ -101,10 +101,16 @@
 
 	        }
 
-	        foreach ($data as $day => $value) {
-	        	$view = implode(' ',$value);
-	        	$data_view[$day] = $view; 
+	        $data_view = array();
+
+	        if($data){
+	        	foreach ($data as $day => $value) {
+	        		$view = implode(' ',$value);
+	        		$data_view[$day] = $view; 
+	        	}
 	        }
+
+	        
 
 	       
 

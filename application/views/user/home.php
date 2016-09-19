@@ -36,7 +36,7 @@
 		border: 1px solid gray;
 		
 		margin: 2px;
-		padding: 18px 8px 8px;
+		padding: 8px 8px 8px;
 		
 		vertical-align: top;
 		width: 14.28%;
@@ -51,9 +51,11 @@
 	}
 	.day-number {
 		color: #cc1618;
-		left: 2px;
 		
-		top: 0;
+	}
+
+	.content-wrapper{
+		padding: 10px 0;
 	}
 	
 	#cal-body{
@@ -70,7 +72,7 @@
 	#cal-body .content {
 	    border-radius: 10px;
 	    display: block;
-	    width: 110px;
+	    width: 100%;
 	    padding-left: 5px;
 	    color: white;
 	    margin-top: 5px;
