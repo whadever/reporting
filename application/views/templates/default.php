@@ -259,13 +259,7 @@
       </div>
     </div>
   
-  <script>
-    $(document).ready(function(){
-        $('#webtour').click(function(){
-            tour.restart();
-        });
-    });
-  </script>
+  
    <script>
       (function(){
 
@@ -322,6 +316,70 @@
           $('.bottom-align-text').hide();
           $('.bottom-align-text-2').hide();
       }
+  </script>
+  <script>
+      //Tour Script
+        var tour = new Tour({
+        backdrop: true,
+        backdropContainer: '#templatebody',
+        backdropPadding: false,
+        steps: [
+        {
+          element: "#nav-button",
+          title: "Getting Started",
+          content: "Click this icon to access all the available menu"
+        },
+        {
+          element: "#submit-button",
+          title: "Submitting Report",
+          content: "Click this menu to submit the reports which are assigned to you"
+        },
+        {
+          element: "#template-button",
+          title: "Report Templates",
+          content: "Here you can see, edit, and delete the already existing report templates. You can also create new report template here."
+        },
+        {
+          path:"/reporting/templates",
+          element: "#add-template",
+          title: "Add New Report Template",
+          content: "Create new template of report to be submitted by the staffs."
+        },
+        {
+          path:"/reporting/templates",
+          element: "#deactivate",
+          title: "Deactivate Report Temporarily",
+          content: "Turn off the report notification and obligation by pressing this button."
+        },
+        {
+          path:"/reporting/templates",
+          element: "#templateaction",
+          title: "Edit Existing Templates",
+          content: "You can either edit, copy, or delete the already existing templates."
+        }
+        ,
+        {
+          element: "#setting-button",
+          title: "Profile Setting",
+          content: "You can change the detail of your personal profile through this option."
+        },
+        {
+          element: "#service-button",
+          title: "Customer Service",
+          content: "If you have any inquiries or difficulties regarding our system, you can contact us through our customer service."
+        }
+
+      ]});
+
+      // Initialize the tour
+      tour.init();      
+  </script>
+  <script>
+    $(document).ready(function(){
+        $('#webtour').click(function(){
+            tour.restart();
+        });
+    });
   </script>
   </body>
 </html>

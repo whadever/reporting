@@ -238,7 +238,7 @@
 		}
 
 		public function edit_template($form_id=''){
-			$date['title']='Edit Template';
+			$data['title']='Edit Template';
 			$data['form']=$this->crud_model->get_by_condition('forms',array('id'=>$form_id))->row();
 			
 			$data['form_fields'] = $this->crud_model->get_by_condition('form_fields',array('form_id'=>$form_id))->result();

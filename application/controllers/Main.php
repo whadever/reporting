@@ -17,7 +17,8 @@ class Main extends MY_Controller {
     }
 
     public function faq(){
-        $this->template->load('default','user/faq');
+        $data['title']="FAQ";
+        $this->template->load('default','user/faq',$data);
     }
 
 	public function index($year = '', $month = '', $user_id = '')

@@ -58,7 +58,7 @@
                         </div>
                        
                         <div class="col-md-7" style="">
-                            <input type="text" class="form-control" value="" name="name" required="1" title="Report Name">
+                            <input type="text" class="form-control" value="" name="name" required="1" title="Report Name" id="template_title">
                         </div>
 
                     </div>

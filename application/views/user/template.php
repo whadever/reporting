@@ -36,7 +36,7 @@
 
 <div class="row" style="background-color: #f4f4f4; padding: 15px 10px">
 	<div class="col-xs-12">
-		<div class="container">
+		<div class="container" id="templatebody">
 			<div class="row">
 				<div class="col-xs-12">
 
@@ -55,8 +55,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12" style="padding: 0 5%">
-					<button class="btn btn-danger pull-right" style="padding: 5px;font-size: 14px; margin-left: 10px;margin-bottom:10px;">Deactivate Report Temporary</button>
-					<a class="pull-right" style="font-size: 16px;padding-top:5px;" href="<?php echo base_url('templates/add_template') ?>">+ Add Template</a>
+					<button class="btn btn-danger pull-right" style="padding: 5px;font-size: 14px; margin-left: 10px;margin-bottom:10px;" id="deactivate">Deactivate Report Temporary</button>
+					<a class="pull-right" style="font-size: 16px;padding-top:5px;" href="<?php echo base_url('templates/add_template') ?>" id="add-template">+ Add Template</a>
 					<table class="table">
 						<thead>
 							<tr style="background-color: #F4F4F4;border: 2px solid #F4F4F4; font-weight:bold">
@@ -72,7 +72,7 @@
 								<td width="35%"><?php echo $form->name ?></td>
 								<td width="20%"><?php echo $form->manager_name ?></td>
 								<td width="25%"><?php echo implode('<br>',$form_staffs[$form->id]) ?></td>
-								<td width="20%">
+								<td width="20%" id="templateaction">
 								<a href="<?php echo base_url('templates/edit_template/'.$form->id) ?>"><i class="fa fa-pencil-square-o actionicons" aria-hidden="true"></i></a>
 								<a href="<?php echo base_url('templates/copy_template/'.$form->id) ?>"><i class="fa fa-files-o actionicons" aria-hidden="true"></i></a>
 								<a href="<?php echo base_url('templates/delete_template/'.$form->id) ?>"><i class="fa fa-trash actionicons" aria-hidden="true"></i></a></td>
