@@ -11,6 +11,10 @@ class Main extends MY_Controller {
         
     }
 
+    function faq(){
+        $this->template->load('default','user/faq');
+    }
+
 	public function index($year = '', $month = '')
 	{  
         $this->load->model('calendar_model');

@@ -178,7 +178,7 @@
         <a href="<?php echo base_url('templates') ?>" ><i id="template-button" class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
         <a href="<?php echo base_url('user/settings/'.$this->session->userdata('is_active')) ?>" ><i id="setting-button" class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
 
-        <a href="<?php echo base_url('') ?>"><i class="fa fa-question" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">FAQ and How</span></a>
+        <a href="<?php echo base_url('main/faq') ?>"><i class="fa fa-question" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">FAQ and How</span></a>
         <a href="<?php echo base_url('') ?>"><i class="fa fa-headphones" id="service-button" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Customer Service</span></a>
         <div class="bottom-align-text-2 text-center">Williams Business Solutions Reporting System V1.0</div>
         <div class="bottom-align-text text-center">For help and feedback contact office@williamsbusiness.co.nz</div>
@@ -189,7 +189,7 @@
      
              
            <div class="row" style="padding: 30px 20px 20px 20px; text-align:right">
-             <div class="col-md-3"><button type="button" class="btn btn-primary pull-left" id="webtour" style="margin-left:10px;">Start Web Tour</button></div>
+             <div class="col-md-3"></div>
               <div class="col-md-4"></div>
              <div class="col-md-5">                
                 
@@ -258,46 +258,7 @@
           
       </div>
     </div>
-  <script>
-      //Tour Script
-        var tour = new Tour({
-        storage:false,
-        steps: [
-        {
-          element: "#nav-button",
-          title: "Getting Started",
-          content: "Click this icon to access all the available menu"
-        },
-        {
-          element: "#submit-button",
-          title: "Submitting Report",
-          content: "Click this menu to submit the reports which are assigned to you"
-        },
-        {
-          element: "#template-button",
-          title: "Seeing Report Template",
-          content: "Here you can see, edit, and delete the already existing report templates. You can also create new report template here."
-        }
-        ,
-        {
-          element: "#setting-button",
-          title: "Profile Setting",
-          content: "You can change the detail of your personal profile through this option."
-        },
-        {
-          element: "#service-button",
-          title: "Customer Service",
-          content: "If you have any inquiries or difficulties regarding our system, you can contact us through our customer service."
-        }
-
-      ]});
-
-      // Initialize the tour
-      tour.init();
-
-      
-      
-  </script>
+  
   <script>
     $(document).ready(function(){
         $('#webtour').click(function(){
