@@ -50,14 +50,14 @@
         <div class="container">
             <div class="row" >
                 <div class="col-xs-12">
-                    <form action="<?php echo base_url('templates/edit_template'); ?>" method="post">
+                    <form action="<?php echo base_url('templates/edit_template/'.$form->id); ?>" method="post">
 
                     <div class="content-inner row" style="margin-bottom: 20px">
                         <div class="col-md-2">
                             <h4 style="color: #666">Name of the Report</h4>
                         </div>
                         <div class="col-md-7" style="">
-                            <input type="text" class="form-control" name="name" required="1" title="Report Name" id="template_title" value="<?php echo $form->name ?>">
+                            <input type="text" class="form-control" name="template_title" required="1" title="Report Name" id="template_title" value="<?php echo $form->name ?>">
                         </div>
 
                     </div>
@@ -72,7 +72,7 @@
                     </div>
                     <div class="row content-inner">
                         <div class="col-md-2 col-md-offset-10" style="text-align: center">
-                            <input class="btn" type="submit" value="Save and Assign Staff" style="background-color: #2c3e50; color: white" id="assign_staff">
+                            <input class="btn" type="submit" name="assign_staff" value="Save and Assign Staff" style="background-color: #2c3e50; color: white" id="assign_staff">
                         </div>
                     </div>
                     </form>

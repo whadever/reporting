@@ -313,10 +313,13 @@
 					$el->select_options = unserialize($el->select_options);
 				}
 			});
-			$newtitle=$this->input->post('name');
-
-			$this->crud_model->update_data('forms',array('name'=>$newtitle),array('id'=>$form_id));
 			$this->template->load('default', 'user/edit_template',$data);
+			if($this->input->post('assign_staff')){
+				$newtitle=$this->input->post('template_title');
+				$this->crud_model->update_data('forms',array('name'=>$newtitle),array('id'=>$form_id));
+				redirect(site_url('templates/assign_staff/'.$form_id));
+			}
+			
 			
 
 		}
