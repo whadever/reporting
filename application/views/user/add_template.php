@@ -62,12 +62,12 @@
                         </div>
 
                     </div>
-                    <div class="content-inner row">
+                    <div class="content-inner row"  id="elementfield">
                         <!--<div class="row">
                             <div class="col-md-10" style="background-color: <?php /*echo $color_one; */?>; color: white;"><h4 align="center">Form</h4></div>
                             <div class="col-md-2"  style="background-color: <?php /*echo $color_one; */?>; color: white;"><h4 align="center">Items</h4></div>
                         </div>-->
-                        <div class="row" style="margin: 0">
+                        <div class="row" style="margin: 0" id="dropelements">
                             <textarea name="fields"></textarea>
                         </div>
                     </div>

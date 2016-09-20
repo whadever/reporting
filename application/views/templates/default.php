@@ -145,7 +145,9 @@
     #mySidenav .fa{
       font-size: 19px;
     }
-    
+    .popover-content{
+      font-size: 12px!important;
+    }
     
 
   </style>
@@ -337,13 +339,25 @@
         {
           element: "#template-button",
           title: "Report Templates",
-          content: "Here you can see, edit, and delete the already existing report templates. You can also create new report template here."
+          content: "Here you can see, edit, and delete the already existing report templates. You can also create new report template here. Now we will proceed to this menu."
         },
         {
           path:"/reporting/templates",
           element: "#add-template",
           title: "Add New Report Template",
-          content: "Create new template of report to be submitted by the staffs."
+          content: "Create new template of report to be submitted by the staffs. Let's see what's needed when creating new report template."
+        },
+        {
+          path:"/reporting/templates/add_template",
+          element: "#template_title",
+          title: "Template Title",
+          content: "Type the title of report template that is going to be created."
+        },
+        {
+          path:"/reporting/templates/add_template",
+          element:"#elementfield",
+          title:"Manage Content Fields",
+          content:"Drag and drop the form elements to the area to manage needed type of input field (whether it's text field, or date picker, or yes/no answer), that are going to be included to report. Now we will go back to the templates page."
         },
         {
           path:"/reporting/templates",
