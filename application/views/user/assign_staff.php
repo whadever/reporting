@@ -128,7 +128,7 @@
 		<option value="thursday">THURSDAY</option>
 		<option value="friday">FRIDAY</option>
 	</select>
-	<input type="time" name="deadline" class="form-control">
+	<input type="time" name="deadline_weekly" class="form-control" value="">
 </div>
 
 <div id="monthly" style="display:none">
@@ -137,17 +137,17 @@
 			<option value="<?php echo $i ?>"><?php echo $i ?></option>
 		<?php endfor; ?>
 	</select>
-	<input type="time" name="deadline" class="form-control">
+	<input type="time" name="deadline_monthly" class="form-control">
 </div>
 
 <div id="yearly" style="display:none">
 	<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">
-	<input type="time" name="deadline" class="form-control">
+	<input type="time" name="deadline_yearly" class="form-control">
 </div>
 
 <div id="custom" style="display:none">
 	<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">
-	<input type="time" name="deadline" class="form-control">
+	<input type="time" name="deadline_custom" class="form-control">
 </div>
 
 <?php echo form_close() ?>

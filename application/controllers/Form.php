@@ -49,6 +49,12 @@
 
 		public function print_fields($form_id){
 			$form_fields = $this->crud_model->get_by_condition('form_fields',array('form_id' => $form_id))->result();
+
+			array_walk($form_fields,function($el){
+				if($el->select_options){
+					$el->select_options = unserialize($el->select_options);
+				}
+			});
 			
 			$output = '';
 
@@ -63,8 +69,10 @@
 			                 if($field->type == 'text'): 
 			                    $output .= '<textarea name="field_'.$field->id.' " class="form-control" id="" placeholder="" '.$required.' ></textarea>';
 			                 endif; 
+			                 
 
 			                 if($field->type == 'select'): 
+
 			                    $output .= '<select name="field_'.$field->id.' "  class="form-control">';
 			                         if($required == ""): 
 			                            $output .= '<option value="">---select---</option>';
