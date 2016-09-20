@@ -90,17 +90,7 @@
 
 				$form_id = $this->db->insert_id();
 
-			}//else{
-			// 	/*update*/
-			// 	$form = $this->form_model->get_form($id);
-			// 	if(!$form){
-			// 		return;
-			// 	}
-			// 	$form_id = $form->id;
-			// 	$this->db->where('id', $form_id);
-			// 	$this->db->update('rs_forms', array('name' => $this->input->post('name')));
-			// }
-			/*adding / updating / deleting form fields*/
+			}
 			$field_id_arr = array();
 			foreach($fields as $field){
 
@@ -142,10 +132,7 @@
 	
 		/*assign staffs to a form*/
 		public function staff_add(){
-			echo "<pre>";
-			print_r($this->input->post());
-			echo "</pre>";
-			exit;
+			
 			if($this->input->post('save')){
 				foreach($this->input->post('staffs') as $staff_id){
 					
@@ -173,7 +160,7 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'frequency' => $this->input->post('report_frequency'),
-							'deadline' => $this->input->post('deadline_weekly')
+							'deadline' => $this->input->post('week').' '.$this->input->post('deadline')
 							
 						);
 
@@ -181,7 +168,7 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'manager_id' => $this->input->post('manager_id'),
-							'deadline' => date('Y-m-d',strtotime($this_week)).' '.$this->input->post('deadline_weekly'),
+							'deadline' => date('Y-m-d',strtotime($this_week)).' '.$this->input->post('deadline'),
 
 						);
 					}elseif($this->input->post('report_frequency') == 'monthly'){
@@ -190,7 +177,7 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'frequency' => $this->input->post('report_frequency'),
-							'deadline' => $this->input->post('deadline_monthly')
+							'deadline' => $this->input->post('day').' '.$this->input->post('deadline')
 							
 						);
 
@@ -198,7 +185,7 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'manager_id' => $this->input->post('manager_id'),
-							'deadline' => date('Y-m').'-'.$this->input->post('day').' '.$this->input->post('deadline_monthly'),
+							'deadline' => date('Y-m').'-'.$this->input->post('day').' '.$this->input->post('deadline'),
 
 						);
 					}elseif($this->input->post('report_frequency') == 'yearly'){
@@ -209,7 +196,7 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'frequency' => $this->input->post('report_frequency'),
-							'deadline' => $this->input->post('deadline_yearly')
+							'deadline' => $date.' '.$this->input->post('deadline')
 							
 						);
 
@@ -217,18 +204,18 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'manager_id' => $this->input->post('manager_id'),
-							'deadline' => $date.' '.$this->input->post('deadline_yearly'),
+							'deadline' => date('Y').'-'.$date.' '.$this->input->post('deadline'),
 
 						);
 					}elseif($this->input->post('report_frequency') == 'custom'){
-						$date = explode('-',$this->input->post('date_custom'));
+						$date = explode('-',$this->input->post('date'));
 						$date = $date[2].'-'.$date[1].'-'.$date[0];
 
 						$data_form_user = array(
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'frequency' => $this->input->post('report_frequency'),
-							'deadline' => $this->input->post('deadline_custom')
+							'deadline' => $date.' '.$this->input->post('deadline')
 							
 						);
 
@@ -236,23 +223,17 @@
 							'form_id' => $this->input->post('form_id'),
 							'user_id' => $staff_id,
 							'manager_id' => $this->input->post('manager_id'),
-							'deadline' => $date.' '.$this->input->post('deadline_custom'),
+							'deadline' => $date.' '.$this->input->post('deadline'),
 
 						);
 					}
 
-					echo "<pre>";
-					print_r($data_form_user);
-					echo'form submit';
-					print_r($data_form_submit);
-					echo "</pre>";
-
-					// $this->crud_model->insert_data('form_users',$data_form_user);
-					// $this->crud_model->insert_data('form_submits',$data_form_submit);
+					
+					 $this->crud_model->insert_data('form_users',$data_form_user);
+				     $this->crud_model->insert_data('form_submits',$data_form_submit);
 				}
 				$data_forms = array(
 						'frequency' => $this->input->post('report_frequency'),
-						'deadline' => $this->input->post('deadline'),
 						'report_color' => '#'.$this->input->post('report_color')
 					);
 				$this->crud_model->update_data('forms',$data_forms,array('id'=>$this->input->post('form_id')));
@@ -340,6 +321,7 @@
 		public function delete_template($form_id=''){
 			if($form_id != ''){
 				$this->crud_model->delete_data('form_users',array('form_id' => $form_id));
+				$this->crud_model->delete_data('form_submits',array('form_id' => $form_id, 'is_submit' => 0));
 				$this->crud_model->update_data('forms',array('active' => 0),array('id' => $form_id));				
 			}
 			redirect('templates');

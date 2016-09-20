@@ -120,35 +120,6 @@
 	</div>
 </div>
 
-<div id="weekly" style="display:none">
-	<select name="week" class="form-control" id="week">
-		<option value="monday">MONDAY</option>
-		<option value="tuesday">TUESDAY</option>
-		<option value="wednesday">WEDNESDAY</option>
-		<option value="thursday">THURSDAY</option>
-		<option value="friday">FRIDAY</option>
-	</select>
-	<input type="time" name="deadline_weekly" class="form-control" value="">
-</div>
-
-<div id="monthly" style="display:none">
-	<select name="day" id="day" class="form-control">
-		<?php for($i = 1; $i <= 31; $i++): ?>
-			<option value="<?php echo $i ?>"><?php echo $i ?></option>
-		<?php endfor; ?>
-	</select>
-	<input type="time" name="deadline_monthly" class="form-control">
-</div>
-
-<div id="yearly" style="display:none">
-	<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">
-	<input type="time" name="deadline_yearly" class="form-control">
-</div>
-
-<div id="custom" style="display:none">
-	<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">
-	<input type="time" name="deadline_custom" class="form-control">
-</div>
 
 <?php echo form_close() ?>
 
@@ -164,29 +135,68 @@
         			break;
         		case 'weekly':
         			$('#deadline').empty();
-        			$('#deadline').append($('#weekly').html());
+
+        			var form = '<select name="week" class="form-control" id="week">';
+					form += '<option value="">Select Day</option>';
+					form += '<option value="monday">MONDAY</option>';
+					form += '<option value="tuesday">TUESDAY</option>';
+					form += '<option value="wednesday">WEDNESDAY</option>';
+					form += '<option value="thursday">THURSDAY</option>';
+					form += '<option value="friday">FRIDAY</option>';
+					form += '</select>';
+					form += '<input type="time" name="deadline" class="form-control">';
+
+        			$('#deadline').append(form);
         			break;
     			case 'fortnightly':
         			$('#deadline').empty();
-        			$('#deadline').append($('#weekly').html());
+
+        			var form = '<select name="week" class="form-control" id="week">';
+					form += '<option value="">Select Day</option>';
+					form += '<option value="monday">MONDAY</option>';
+					form += '<option value="tuesday">TUESDAY</option>';
+					form += '<option value="wednesday">WEDNESDAY</option>';
+					form += '<option value="thursday">THURSDAY</option>';
+					form += '<option value="friday">FRIDAY</option>';
+					form += '</select>';
+					form += '<input type="time" name="deadline" class="form-control">';
+
+        			$('#deadline').append(form);
         			break;
     			case 'monthly':
         			$('#deadline').empty();
-        			$('#deadline').append($('#monthly').html());
+
+        			var form = '<select name="day" id="day" class="form-control">';
+					form += '<option value="">Select Day</option>';
+						<?php for($i = 1; $i <= 31; $i++): ?>
+						form += '	<option value="<?php echo $i ?>"><?php echo $i ?></option>';
+						<?php endfor; ?>
+					form += '</select>';
+					form += '<input type="time" name="deadline" class="form-control">';
+
+        			$('#deadline').append(form);
 
         			break;
     			case 'yearly':
         			$('#deadline').empty();
-        			$('#deadline').append($('#yearly').html());
+
+        			var form = '<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">';
+					form += '<input type="time" name="deadline" class="form-control">';
+
+        			$('#deadline').append(form);
         			$('#datepicker2').datepicker({
         				format : "dd-mm"
         			});
         			break;
         		case 'custom':
         			$('#deadline').empty();
-        			$('#deadline').append($('#yearly').html());
+
+        			var form = '<input type="text" id="datepicker2" class="form-control" placeholder="select a date" name="date">';
+					form += '<input type="time" name="deadline" class="form-control">';
+
+        			$('#deadline').append(form);
         			$('#datepicker2').datepicker({
-        				format : "dd-mm"
+        				format : "dd-mm-yyyy"
         			});
         		default:
         			break;
