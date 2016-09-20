@@ -37,7 +37,7 @@ class Main extends MY_Controller {
         if($this->user_role != 'admin'){
             $data['calendar'] = $this->calendar_model->generate($year,$month,$user_id);    
         }else{
-            $data['calendar'] = $this->calendar_model->generate($year,$month,$user_id);
+            $data['calendar'] = $this->calendar_model->admin_generate($year,$month,$user_id);
         }
         
 

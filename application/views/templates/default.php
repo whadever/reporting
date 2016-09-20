@@ -357,25 +357,29 @@
           path:"/reporting/templates/add_template",
           element:"#elementfield",
           title:"Manage Content Fields",
-          content:"Drag and drop the form elements to the area to manage needed type of input field (whether it's text field, or date picker, or yes/no answer), that are going to be included to report."
+          content:"Drag and drop the form elements to the area to manage needed type of input field (whether it's text field, or date picker, or yes/no answer), that are going to be included to report.",
+          placement: "left",
         },
         {
           path:"/reporting/templates/add_template",
           element:"#assign_staff",
           title:"Complete Template Content Management",
-          content:"After the template content is complete, proceed by clicking this button. Next step includes deciding the deadline of the report, frequency of submitting the report, and choosing staff that will be required to fill the report and the one that will be notified when report is submitted."
+          content:"After the template content is complete, proceed by clicking this button. Next step includes deciding the deadline of the report, frequency of submitting the report, and choosing staff that will be required to fill the report and the one that will be notified when report is submitted.",
+          placement: "left",
         },
         {
           path:"/reporting/templates",
           element: "#deactivate",
           title: "Deactivate Report Temporarily",
-          content: "Turn off the report notification and obligation by pressing this button."
+          content: "Turn off the report notification and obligation by pressing this button.",
+          placement: "left",
         },
         {
           path:"/reporting/templates",
           element: "#templateaction",
           title: "Edit Existing Templates",
-          content: "You can either edit, copy, or delete the already existing templates."
+          content: "You can either edit, copy, or delete the already existing templates.",
+          placement: "left",
         }
         ,
         {

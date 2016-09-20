@@ -40,18 +40,22 @@
 		
 		vertical-align: top;
 		width: 14.28%;
-		height: 100px;
+		height: 120px;
 
 	}
 	#cal-body tr{
 		height: 0;
 	}
 	#cal-body td.today{
-		border: 2px solid #16a085;
+		border: 2px solid #CD1719;
 	}
 	.day-number {
 		color: #cc1618;
 		
+	}
+	.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control{
+		background-color: white !important;
+
 	}
 
 	.content-wrapper{

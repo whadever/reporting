@@ -58,12 +58,68 @@
 
 		}
 
+		function admin_generate($year,$month,$company_id){
+
+	        $this->load->library('calendar',$this->conf);
+
+	        $this->db->select('form_submits.*,forms.name as report_name,forms.frequency,forms.report_color,users.name');
+	        $this->db->from('form_submits');
+	        $this->db->join('forms','forms.id = form_submits.form_id');
+	        $this->db->join('users', 'users.id = form_submits.user_id');
+	        $this->db->where('users.company_id',$company_id);
+	        $user_reports = $this->db->get()->result();
+
+	        $data = array();
+
+	        foreach($user_reports as $report){
+	        	$date = explode(' ', $report->deadline);
+	        	$date = explode('-', $date[0]);
+	        	$report_year = $date[0];
+	        	$report_month = $date[1];
+	        	$report_day = $date[2];
+
+	        	if($year == $report_year && $month == $report_month){
+	        		$content = 'Not Submitted';
+	        		if($report->submit_date != NULL){
+	        			$content = 'submitted on '.$report->submit_date;
+	        		}
+
+	        		if(array_key_exists($report_day,$data)){
+	        			array_push($data[$report_day],'<a class="content" data-toggle="tooltip" data-placement="top" title="'.$content.'" style="background-color:'.$report->report_color.'" href="">'.$report->report_name.' - '.$report->name.'</a>');
+	        			
+
+	        		}else{
+	        			$data[$report_day] = array('<a class="content" data-toggle="tooltip" data-placement="top" title="'.$content.'" style="background-color:'.$report->report_color.'" href="">'.$report->report_name.' - '.$report->name.'</a>');
+	        		}
+
+	        		
+	        	}
+
+
+	        }
+	       
+
+	        $data_view = array();
+
+	        if($data){
+	        	foreach ($data as $day => $value) {
+	        		$view = implode(' ',$value);
+	        		$data_view[$day] = $view; 
+	        	}
+	        }
+
+	        
+
+	       
+
+	        return $this->calendar->generate($year,$month,$data_view);
+
+		}
+
 		function generate($year,$month,$user_id){
 			
 
 	        $this->load->library('calendar',$this->conf);
-
-	        $red = 'purple';
 
 	        $this->db->select('form_submits.*,forms.name as report_name,forms.frequency,forms.report_color,users.name');
 	        $this->db->from('form_submits');

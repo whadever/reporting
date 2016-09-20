@@ -52,7 +52,7 @@
                 <div class="col-xs-12">
                     <form action="<?php echo base_url('templates/create/'); ?>" method="post">
 
-                    <div class="content-inner row tour tour_4" style="margin-bottom: 20px">
+                    <div class="content-inner row" style="margin-bottom: 20px">
                         <div class="col-md-2">
                             <h4 style="color: #666">Name of the Report</h4>
                         </div>
@@ -67,7 +67,7 @@
                             <div class="col-md-10" style="background-color: <?php /*echo $color_one; */?>; color: white;"><h4 align="center">Form</h4></div>
                             <div class="col-md-2"  style="background-color: <?php /*echo $color_one; */?>; color: white;"><h4 align="center">Items</h4></div>
                         </div>-->
-                        <div class="row" style="margin: 0" id="dropelements">
+                        <div class="row" style="margin: 0" id="test">
                             <textarea name="fields"></textarea>
                         </div>
                     </div>
@@ -96,9 +96,7 @@
             $("textarea").val($(".frmb").toXML());
         });
 
-        /*task #4429*/
-        $(".frmb-wrap").addClass('tour tour_5');
-        $("#frmb-0-cb-wrap").addClass('tour tour_6');
+       
     });
 
    
