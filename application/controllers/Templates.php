@@ -313,7 +313,11 @@
 					$el->select_options = unserialize($el->select_options);
 				}
 			});
-			$this->template->load('default', 'user/add_template',$data);
+			$newtitle=$this->input->post('name');
+
+			$this->crud_model->update_data('forms',array('name'=>$newtitle),array('id'=>$form_id));
+			$this->template->load('default', 'user/edit_template',$data);
+			
 
 		}
 
