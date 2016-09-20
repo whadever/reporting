@@ -357,7 +357,13 @@
           path:"/reporting/templates/add_template",
           element:"#elementfield",
           title:"Manage Content Fields",
-          content:"Drag and drop the form elements to the area to manage needed type of input field (whether it's text field, or date picker, or yes/no answer), that are going to be included to report. Now we will go back to the templates page."
+          content:"Drag and drop the form elements to the area to manage needed type of input field (whether it's text field, or date picker, or yes/no answer), that are going to be included to report."
+        },
+        {
+          path:"/reporting/templates/add_template",
+          element:"#assign_staff",
+          title:"Complete Template Content Management",
+          content:"After the template content is complete, proceed by clicking this button. Next step includes deciding the deadline of the report, frequency of submitting the report, and choosing staff that will be required to fill the report and the one that will be notified when report is submitted."
         },
         {
           path:"/reporting/templates",

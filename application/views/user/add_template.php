@@ -73,7 +73,7 @@
                     </div>
                     <div class="row content-inner">
                         <div class="col-md-2 col-md-offset-10" style="text-align: center">
-                            <input class="btn" type="submit" value="Save and Assign Staff" style="background-color: #2c3e50; color: white">
+                            <input class="btn" type="submit" value="Save and Assign Staff" style="background-color: #2c3e50; color: white" id="assign_staff">
                         </div>
                     </div>
                     </form>
