@@ -164,6 +164,7 @@
       $active_photo = base_url().$active_user->photo; 
     }
     
+    $role = $this->crud_model->get_by_condition('users',array('id' => $this->session->userdata('is_active')))->row('role');
    ?>
 
 
@@ -174,14 +175,24 @@
         <div class="company_logo" style="display:none;margin-bottom: 10px; padding-left: 15px; padding-bottom:20px; border-bottom:7px solid #000">
           <img src="<?php echo base_url()?>assets/william_platform_logo.png" width="100px" style="margin-left:15%;">
         </div>
+
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="border-bottom: none;font-size:25px!important; display:none">&times;</a>
+
         <a href="<?php echo base_url('main') ?>"><i class="fa fa-home" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Home</span></a>
+        <?php if($role != 'admin'): ?>
         <a href="<?php echo base_url('form/submit_report') ?>" ><i id="submit-button" class="fa fa-hand-pointer-o" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Submit</span></a>
+        <?php endif; ?>
+
+        <?php if($role != 'staff'): ?>
         <a href="<?php echo base_url('templates') ?>" ><i id="template-button" class="fa fa-file-text" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Template</span></a>
+        <?php endif; ?>
+
         <a href="<?php echo base_url('user/settings/'.$this->session->userdata('is_active')) ?>" ><i id="setting-button" class="fa fa-cogs" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Settings</span></a>
 
         <a href="<?php echo base_url('main/faq') ?>"><i class="fa fa-question" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">FAQ and How</span></a>
+
         <a href="<?php echo base_url('') ?>"><i class="fa fa-headphones" id="service-button" aria-hidden="true"></i><span class="menu-text pull-right" style="display:none">Customer Service</span></a>
+
         <div class="bottom-align-text-2 text-center">Williams Business Solutions Reporting System V1.0</div>
         <div class="bottom-align-text text-center">For help and feedback contact office@williamsbusiness.co.nz</div>
       </div>
