@@ -42,7 +42,7 @@
 			$this->template->load('default', 'user/template',$data);
 		}
 
-		public function add_template($id = null{
+		public function add_template($id = null){
 
 			/*getting all form fields in case of updating*/
 			if(!is_null($id)){
