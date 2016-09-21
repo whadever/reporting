@@ -22,6 +22,16 @@
 			return $this->db->get()->result();
 
 		}
+
+		function get_form_fields($form_id = ''){
+			$this->db->select('form_fields.*,forms.name');
+			$this->db->from('forms');
+			$this->db->join('form_fields','form_fields.form_id = forms.id');
+			$this->db->where('forms.id',$form_id);
+			$this->db->order_by("column", "asc");
+			$this->db->order_by("order", "asc");
+			return $this->db->get()->result();
+		}
 	}
 
  ?>

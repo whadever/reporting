@@ -42,10 +42,32 @@
 			$this->template->load('default', 'user/template',$data);
 		}
 
-		public function add_template(){
+		public function add_template($id = null{
+
+			/*getting all form fields in case of updating*/
+			if(!is_null($id)){
+
+				$form = $this->form_model->get_form($id);
+				if(!$form){
+					echo "not a valid form"; exit;
+				}
+
+				$data['form_fields'] = $this->form_model->get_form_fields($id, 'manager');
+				$data['form'] = $form;
+
+				array_walk($data['form_fields'],function($el){
+					if($el->select_options){
+						$el->select_options = unserialize($el->select_options);
+					}
+				});
+
+				$data['title'] = 'Edit Template';
+			}else{
+				$data['title'] = 'Create Template';
+			}
 	
 			
-			$data['title'] = 'New Template';
+			
 			$this->template->load('default', 'user/add_template',$data);
 		}
 
